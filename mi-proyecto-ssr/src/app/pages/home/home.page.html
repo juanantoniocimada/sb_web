@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+@if(loading) {
+    <div class="container">
+      loading
+    </div>
+}
+
+@else {
+    <div class="container">
+
+      <p></p>
+
+      <div>
+        <label for="">
+          {{ originLabel }}
+        </label>
+        <select name="" id="">
+          @for (town of towns; track $index) {
+            <option value="">
+              {{ town.description }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <div>
+        <label for="">
+          {{ destinationLabel }}
+        </label>
+        <select name="" id="">
+          @for (town of towns; track $index) {
+            <option value="">
+              {{ town.description }}
+            </option>
+          }
+        </select>
+      </div>
+
+    </div>
+}
+
+<app-footer></app-footer>
