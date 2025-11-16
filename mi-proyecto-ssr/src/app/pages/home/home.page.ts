@@ -8,6 +8,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { StatisticsService } from '../../services/statistics.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
     HeaderComponent,
     FooterComponent,
     TranslateModule,
+    FormsModule
   ],
   providers: [
     TownService, 
@@ -34,6 +36,8 @@ export class HomePage implements OnInit {
   */
   public origin: any;
   public destination: any;
+  public dateValue: string = '';
+  public timeValue: string = '';
   public dateTimeValue: string = '';
 
   /*
@@ -116,12 +120,30 @@ export class HomePage implements OnInit {
 
   public find(): void {    
 
-    console.log('asdasdas');
-    
+    console.log(this.origin);
+    console.log(this.destination);
 
-    this._router.navigate(['/lines']);
+    const queryParams: any = {};
+    if (this.dateValue) queryParams.date = this.dateValue;
+    if (this.timeValue) queryParams.time = this.timeValue;
+
+    const originSlug = this.slugify(this.origin.description);
+    const destinationSlug = this.slugify(this.destination.description);
+
+    this._router.navigate(['/lines', originSlug, destinationSlug], { queryParams });
     
     // this.navigateTo();
+  }
+
+  private slugify(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
+      .trim();
   }
 
   public async navigateTo(): Promise<void> {
@@ -170,6 +192,7 @@ export class HomePage implements OnInit {
 
             if (!this.isRouteProhibited) {
               this._router.navigate(['/lines']).finally(() => {
+              
               });
             }
           },

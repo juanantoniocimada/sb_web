@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // import { HomeToLines } from 'src/app/services/home-to-lines';
-
 import { take } from 'rxjs';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -14,6 +13,7 @@ import { HolidaysService } from '../../services/holidays.service';
 import { extractTimeFromISO, getDayOfWeekFromISO } from '../../utils/utils';
 import { SliderLinesComponent } from '../../components/slider-lines/slider-lines.component';
 import { ItemComponent } from '../../components/item/item.component';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lines',
@@ -76,7 +76,8 @@ export class LinesPage implements OnInit {
 
   public browserLang: string | undefined = '';
 
-  constructor(public translate: TranslateService) {
+  
+  constructor(public translate: TranslateService, private titleService: Title, private metaService: Meta) {
     this.browserLang = translate.getBrowserLang();
 
     if (this.browserLang) {
@@ -90,6 +91,10 @@ export class LinesPage implements OnInit {
 
     // this.origin = this._homeToLines.getOrigin();
     // this.destination = this._homeToLines.getDestination();
+
+    this.titleService.setTitle('ruta de ' + this.origin.description + ' a ' + this.destination.description + ' - Horarios y Precios');
+    this.metaService.updateTag({ name: 'description', 
+      content: 'ruta de ' + this.origin.description + ' a ' + this.destination.description });
 
     this.iAmGoingFrom = this.translate.instant('iAmGoingFrom', { origin: this.origin.description, destination: this.destination.description });
 

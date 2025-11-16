@@ -10,12 +10,12 @@
     <div class="container">
 
       <div>
-        <label for="">
+        <label for="origin">
           {{ originLabel }}
         </label>
-        <select name="" id="">
+        <select [(ngModel)]="origin" name="origin" id="origin">
           @for (town of towns; track $index) {
-            <option value="">
+            <option [ngValue]="town">
               {{ town.description }}
             </option>
           }
@@ -23,12 +23,12 @@
       </div>
 
       <div>
-        <label for="">
+        <label for="destination">
           {{ destinationLabel }}
         </label>
-        <select name="" id="">
+        <select [(ngModel)]="destination" name="destination" id="destination">
           @for (town of towns; track $index) {
-            <option value="">
+            <option [ngValue]="town">
               {{ town.description }}
             </option>
           }
@@ -39,14 +39,14 @@
         <label for="date">
           Date
         </label>
-        <input type="date" id="date" name="date">
+        <input type="date" id="date" name="date" [(ngModel)]="dateValue">
       </div>
 
       <div>
         <label for="time">
           Time
         </label>
-        <input type="time" id="time" name="time">
+        <input type="time" id="time" name="time" [(ngModel)]="timeValue">
       </div>
 
       <div (click)="find()">
