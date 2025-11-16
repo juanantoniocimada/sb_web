@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // import { ItemComponent } from 'src/app/components/item/item.component';
-// import { SliderLinesComponent } from 'src/app/components/slider-lines/slider-lines.component';
-
 // import { HomeToLines } from 'src/app/services/home-to-lines';
 
 import { take } from 'rxjs';
@@ -15,6 +13,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { TownService } from '../../services/town.service';
 import { HolidaysService } from '../../services/holidays.service';
 import { extractTimeFromISO, getDayOfWeekFromISO } from '../../utils/utils';
+import { SliderLinesComponent } from '../../components/slider-lines/slider-lines.component';
 
 @Component({
   selector: 'app-lines',
@@ -30,7 +29,7 @@ import { extractTimeFromISO, getDayOfWeekFromISO } from '../../utils/utils';
     TranslateModule,
     // ItemComponent,
     // ItemComponentCopy,
-    // SliderLinesComponent,
+    SliderLinesComponent,
   ],
 })
 export class LinesPage implements OnInit {
@@ -66,7 +65,7 @@ export class LinesPage implements OnInit {
 
   public activeFilters = false;
 
-  public iAmGoingFrom: string = '';
+  public iAmGoingFrom: string = ' Voy de ( puerto del Rosario ) a ( Corralejo ). ';
 
   public destination: any = {};
   public origin: any = {};
@@ -99,6 +98,7 @@ export class LinesPage implements OnInit {
 
     this.loading = true;
     const routeIds = this.lines.map((line: any) => line.id_routes);
+    
 
     // Formatear la hora como HH:MM:SS
     const time = extractTimeFromISO(this.dateTimeValue);
@@ -106,8 +106,8 @@ export class LinesPage implements OnInit {
 
     const item = {
       routeIds: routeIds,
-      hourValue: time,
-      dayName: this.dayName,
+      hourValue: '08:54:41',
+      dayName: 'sunday',
       festive: festive,
     };    
 

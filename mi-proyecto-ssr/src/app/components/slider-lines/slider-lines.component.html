@@ -1,0 +1,23 @@
+<div class="container">
+
+  @for (line of lines; track $index) {
+    <div (click)="filterEmit(line)" class="line" slot="start" [ngStyle]="{ 'background-color': line.color}">
+        
+        <span>
+          {{ 'line' | translate }}
+          {{ line.parent_line }}
+        </span>
+
+        <span>
+          {{ line.description }}
+        </span>
+
+        <span>
+          {{ line.variant }}
+        </span>
+
+    </div>
+    <br>
+  }
+
+</div>

@@ -1,0 +1,22 @@
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.line {
+  flex-direction: column;
+  flex: 1;
+  border-radius: 5px;
+  padding: 0.5em;
+  color: var(--brand-tertiary);
+  font-size: medium;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  display: flex;
+  margin-top: 5px;
+  
+  .description {
+    margin-bottom: 0.5em;
+  }
+}

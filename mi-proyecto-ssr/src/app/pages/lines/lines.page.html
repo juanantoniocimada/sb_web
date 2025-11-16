@@ -2,14 +2,12 @@
 
 @if(loading) {
   <div class="container">
-    <!--
-      <ion-spinner class="spinner" name="crescent"></ion-spinner>
-    -->
+    loading
   </div>
 }
 
 @else {
-  <div>
+  <div class="container">
 
       <div *ngIf="isHoliday" class="mode-holidays">
 
@@ -31,12 +29,12 @@
       </div>
 
       @if (mode === 'directRoute') {
-        <!--
-          <app-slider-lines (filter)="filter($event)" class="app-slider-lines" [lines]="lines" />
+        <app-slider-lines (filter)="filter($event)" class="app-slider-lines" [lines]="lines" />
 
-        <ion-item *ngIf="activeFilters" class="see-all" (click)="seeAll()">
-          {{ 'removeFilters' | translate }}
-        </ion-item>
+        <!--
+          <ion-item *ngIf="activeFilters" class="see-all" (click)="seeAll()">
+            {{ 'removeFilters' | translate }}
+          </ion-item>
         -->
       }
 
@@ -55,6 +53,7 @@
 
             }
 
+            {{  hour.value  }} <br>
             <!--
               <app-item [item]="hour" [color]="hour.color" [index]="$index" [hour]="hour" [dateTimeValue]="dateTimeValue" />
             -->
@@ -115,9 +114,9 @@
         {{ 'linesFor' | translate }}: {{ 'step' | translate }} | {{ stepSelected }}
       </div>
 
-      <!--
         <app-slider-lines (filter)="filter($event)" class="app-slider-lines" [lines]="lines" />
 
+      <!--
         <ion-item *ngIf="activeFilters" class="see-all" (click)="seeAll()">
           {{ 'removeFilters' | translate }}
         </ion-item>
