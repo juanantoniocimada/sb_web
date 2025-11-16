@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,6 +11,11 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class HeaderComponent {
+
+  @Output() changeHeader = new EventEmitter<void>();
+  @Input() page: string = '';
+  @Input() text: string = '';
+
 
 
 }

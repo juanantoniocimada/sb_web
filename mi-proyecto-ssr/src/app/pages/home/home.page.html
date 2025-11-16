@@ -9,8 +9,6 @@
 @else {
     <div class="container">
 
-      <p></p>
-
       <div>
         <label for="">
           {{ originLabel }}
@@ -37,6 +35,26 @@
         </select>
       </div>
 
+      <div>
+        <label for="date">
+          Date
+        </label>
+        <input type="date" id="date" name="date">
+      </div>
+
+      <div>
+        <label for="time">
+          Time
+        </label>
+        <input type="time" id="time" name="time">
+      </div>
+
+      <div (click)="find()">
+        <button>
+          {{ 'search' | translate }}
+        </button>
+      </div>
+`
     </div>
 }
 

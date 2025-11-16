@@ -1,0 +1,159 @@
+.list {
+  margin-top: 0.5em;
+
+  .see-all {
+    color: var(--brand-secondary);
+    border: 1px solid var(--brand-secondary);
+    border-radius: 0.5em;
+  }
+
+
+  .combined {
+
+    display: flex;
+    flex-direction: row;
+
+    
+
+    .item {
+      width: 100%;
+
+      // display: flex;
+      // flex-direction: row;
+
+      font-size: small;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+      color: grey;
+
+      background-color: whitesmoke;
+      padding: 1em;
+      border: 2px solid var(--brand-secondary);
+
+      .text {
+        font-weight: bolder;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 1em;
+      }
+
+    }
+
+    .transbordo {
+      font-size: small;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: grey;
+      background-color: whitesmoke;
+      padding: 1em;
+      border-radius: 0.5em;
+      margin-top: 0.5em;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+
+    }
+
+    .selected {
+      background-color: #028997;
+      color: white;
+
+    }
+  }
+
+  .combined-routes {
+    border: 2px solid green;
+    color: green;
+    padding: 0.5em;
+    margin-top: 1em;
+
+    .town {
+      text-decoration: underline;
+      font-weight: bolder;
+      color: gray;
+    }
+  }
+
+  .mode {
+
+    margin-left: 10px;
+    margin-right: 10px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+    padding-left: 1em;
+
+    color: white;
+
+    color: var(--brand-secondary);
+    background-color: white;
+    border-bottom: 2px solid var(--brand-secondary);
+    font-weight: bolder;
+  }
+
+  .mode-holidays {
+
+    color: white;
+
+    padding: 1em;
+
+    margin-left: 10px;
+    margin-right: 10px;
+
+    color: orangered;
+    background-color: white;
+    border: 1px solid orangered;
+    border-radius: 6px;
+    // font-weight: bolder;
+  }
+
+  .item {
+
+    border-radius: 0.5em;
+    margin-top: 0.5em;
+
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.number {
+
+  color: orange;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.5em;
+
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.publicity {
+  margin-top: 0.5em;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 1em;
+  border: 1px solid gray;
+  color: gray;
+  border-radius: 0.5em;
+  font-size: larger;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

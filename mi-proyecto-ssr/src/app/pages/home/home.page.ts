@@ -6,6 +6,8 @@ import { take } from 'rxjs/internal/operators/take';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { StatisticsService } from '../../services/statistics.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,23 +29,34 @@ export class HomePage implements OnInit {
 
   public browserLang: string | undefined = '';
 
+  /*  
+    values
+  */
+  public origin: any;
+  public destination: any;
+  public dateTimeValue: string = '';
+
   /*
     labels
   */
   public originLabel = '';
   public destinationLabel = '';
   
-
   /*
     injects
   */
   private _townService = inject(TownService);
+  private _prohibitedRoutesService = inject(ProhibitedRoutesService);
+  private _statisticsService = inject(StatisticsService);
+  private _router = inject(Router);
 
   /*
     indicators
   */
   public loading: boolean = false;
   public error = false;
+  public isRouteProhibited = false;
+
 
   towns: any[] = [];
 
@@ -98,6 +111,81 @@ export class HomePage implements OnInit {
         this.loading = false;
         this.error = true;
       },
+    });
+  }
+
+  public find(): void {    
+
+    console.log('asdasdas');
+    
+
+    this._router.navigate(['/lines']);
+    
+    // this.navigateTo();
+  }
+
+  public async navigateTo(): Promise<void> {
+    this.loadProhibitedRoutes();
+  }
+
+  public loadProhibitedRoutes(): void {
+
+    this.loading = true;
+    this._prohibitedRoutesService.getAll().pipe(take(1)).subscribe({
+      next: (prohibitedRoutes: any[]) => {
+
+        this.loading = false;
+
+        this.isRouteProhibited = prohibitedRoutes.some(route =>
+          (route.origin === this.origin.id_locations && route.destination === this.destination.id_locations) ||
+          (route.origin === this.destination.id_locations && route.destination === this.origin.id_locations)
+        );
+
+        if (this.origin.id_locations === this.destination.id_locations) {
+          this.isRouteProhibited = true;
+        }
+
+        const body = {
+          origin: this.origin.description,
+          destination: this.destination.description,
+          datetime_input: this.dateTimeValue,
+          datetime_search: new Date().toISOString(),
+          // username: localStorage.getItem('userId') || 'unknown'
+        };
+
+        this.loading = true;
+        this._statisticsService.addStatistics(body).subscribe({
+          next: () => {
+
+            this.loading = false;
+
+            /*
+            this._homeToLines.setData(
+              this.origin,
+              this.destination,
+              this.dateTimeValue
+            );
+            */
+                       
+
+            if (!this.isRouteProhibited) {
+              this._router.navigate(['/lines']).finally(() => {
+              });
+            }
+          },
+          error: () => {
+            this.loading = false;
+            this.error = true;
+          },
+          complete: () => { }
+        });
+      },
+      error: () => {
+
+        this.loading = false;
+        this.error = true;
+      },
+      complete: () => { }
     });
   }
 }

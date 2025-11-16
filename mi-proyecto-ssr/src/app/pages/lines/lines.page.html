@@ -1,0 +1,152 @@
+<app-header (changeHeader)="changeHeader()" [text]="titleSchedule" page="lines" />
+
+@if(loading) {
+  <div class="container">
+    <!--
+      <ion-spinner class="spinner" name="crescent"></ion-spinner>
+    -->
+  </div>
+}
+
+@else {
+  <div>
+
+      <div *ngIf="isHoliday" class="mode-holidays">
+
+        {{ 'theConsultedDayIs' | translate }}
+
+        <strong>
+          {{ holidayData.name }}
+        </strong>
+        <strong>
+          {{ holidayData.message }}
+        </strong>
+
+        {{ 'holidaySchedulesApply' | translate }}
+
+      </div>
+
+      <div class="mode" *ngIf="origin?.description && destination?.description">
+        {{ iAmGoingFrom }}
+      </div>
+
+      @if (mode === 'directRoute') {
+        <!--
+          <app-slider-lines (filter)="filter($event)" class="app-slider-lines" [lines]="lines" />
+
+        <ion-item *ngIf="activeFilters" class="see-all" (click)="seeAll()">
+          {{ 'removeFilters' | translate }}
+        </ion-item>
+        -->
+      }
+
+      @if (mode === 'directRoute') {
+
+      <div class="mode">
+        <!--
+          <ion-icon name="bus-outline"></ion-icon>
+        -->
+        {{ 'directRoute' | translate }}
+      </div>
+
+        @if (hours.length > 0) {
+          @for (hour of hours; track $index) {
+            @if ($index === 0) {
+
+            }
+
+            <!--
+              <app-item [item]="hour" [color]="hour.color" [index]="$index" [hour]="hour" [dateTimeValue]="dateTimeValue" />
+            -->
+
+          }
+        } @else {
+
+        <div class="mode">
+
+          <p>
+            {{ 'noBusesAvailable' | translate }}
+          </p>
+          <p>
+            {{ 'taxiOrPrivateVehicle' | translate }}
+          </p>
+
+        </div>
+        }
+      }
+
+      @if (mode === 'combinedRoutes') {
+
+      <div class="mode">
+        <!--
+          <ion-icon name="bus-outline"></ion-icon>
+        -->
+        {{ 'combinedRoute' | translate }}
+      </div>
+
+      @for (combinada of combinadas; track $index) {
+
+        <div class="combined">
+
+          @for (item of combinada.items; track $index) {
+
+            <div class="item" [ngClass]="{ 'selected': stepSelected === $index+1}" (click)="selectCombined(item, $index)">
+
+              <div class="number">
+                {{ 'step' | translate }}: {{ $index + 1 }}
+              </div>
+              <div class="text">
+                {{ item.name.origen }} - {{ item.name.destino }}
+              </div>
+
+            </div>
+
+            @if ($index === 0) {
+              <div class="transbordo">
+                {{ 'transbord' | translate }}
+              </div>
+            }
+          }
+
+        </div>
+      }
+
+      <div class="mode">
+        {{ 'linesFor' | translate }}: {{ 'step' | translate }} | {{ stepSelected }}
+      </div>
+
+      <!--
+        <app-slider-lines (filter)="filter($event)" class="app-slider-lines" [lines]="lines" />
+
+        <ion-item *ngIf="activeFilters" class="see-all" (click)="seeAll()">
+          {{ 'removeFilters' | translate }}
+        </ion-item>
+      -->
+
+      @if (hours.length > 0) {
+        @for (item of hours; track $index) {
+
+          <!--
+          <app-item-copy 
+            [dateTimeValue]="dateTimeValue" 
+            [item]="item" 
+            [color]="item.color" 
+            [index]="$index"
+            [stepSelected]="stepSelected" 
+            [hour]="item" 
+          />
+          -->
+
+        }
+      } @else {
+          <div class="mode">
+            <p>{{ 'noBusesAvailable' | translate }}</p>
+            <p>{{ 'taxiOrPrivateVehicle' | translate }}</p>
+          </div>
+          }
+      }
+
+  </div>
+}
+
+<app-footer></app-footer>
