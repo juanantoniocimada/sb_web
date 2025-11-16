@@ -3,11 +3,11 @@
   height: 60px;
   background-color: #028997;
   font-family: 'Architects Daughter', sans-serif;
-  text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   color: var(--brand-tertiary);
+  padding-left: 1em;
 }
 
 .highlight {

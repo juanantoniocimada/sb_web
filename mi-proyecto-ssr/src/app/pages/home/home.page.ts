@@ -127,23 +127,12 @@ export class HomePage implements OnInit {
     if (this.dateValue) queryParams.date = this.dateValue;
     if (this.timeValue) queryParams.time = this.timeValue;
 
-    const originSlug = this.slugify(this.origin.description);
-    const destinationSlug = this.slugify(this.destination.description);
+    const originSlug = this.origin.slug;
+    const destinationSlug = this.destination.slug;
 
     this._router.navigate(['/lines', originSlug, destinationSlug], { queryParams });
     
     // this.navigateTo();
-  }
-
-  private slugify(text: string): string {
-    return text
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/[^\w\-]+/g, '')
-      .replace(/\-\-+/g, '-')
-      .trim();
   }
 
   public async navigateTo(): Promise<void> {

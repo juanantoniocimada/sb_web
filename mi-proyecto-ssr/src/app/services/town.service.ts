@@ -16,5 +16,9 @@ export class TownService {
       delay(0)
     );
   }
-}
 
+  public getTownBySlug(slug: string): Observable<any> {
+    return this._http.get<any>(`${this._apiUrl}/location/slug/${slug}`);
+  }
+  
+}

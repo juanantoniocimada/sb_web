@@ -2,10 +2,10 @@ import { LinesService } from './../../services/lines.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // import { HomeToLines } from 'src/app/services/home-to-lines';
-import { take } from 'rxjs';
+import { forkJoin, take } from 'rxjs';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { TownService } from '../../services/town.service';
@@ -33,6 +33,12 @@ import { Title, Meta } from '@angular/platform-browser';
   ],
 })
 export class LinesPage implements OnInit {
+
+
+  public originSlugParam : string | null = null;
+  public destinationSlugParam : string | null = null;
+  public dateValueParam : string | null = null;
+  public timeValueParam : string | null = null;
   
   /*
     values
@@ -60,8 +66,10 @@ export class LinesPage implements OnInit {
   */
   private _linesService = inject(LinesService);
   public _router = inject(Router);
+  private _route = inject(ActivatedRoute);
   // private _homeToLines = inject(HomeToLines);
   private _holidaysService = inject(HolidaysService);
+  private _townService = inject(TownService);
 
   public activeFilters = false;
 
@@ -87,10 +95,19 @@ export class LinesPage implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.dateTimeValue = this._homeToLines.getDatetime();
+    // Obtener parámetros de la ruta
+    this.originSlugParam = this._route.snapshot.paramMap.get('origin');
+    this.destinationSlugParam = this._route.snapshot.paramMap.get('destination');
+    
+    // Obtener query params opcionales
+    this.dateValueParam = this._route.snapshot.queryParamMap.get('date');
+    this.timeValueParam = this._route.snapshot.queryParamMap.get('time');
+    console.log('Origin slug:', this.originSlugParam);
+    console.log('Destination slug:', this.destinationSlugParam);
+    console.log('Date:', this.dateValueParam);
+    console.log('Time:', this.timeValueParam);
 
-    // this.origin = this._homeToLines.getOrigin();
-    // this.destination = this._homeToLines.getDestination();
+    // this.getTownBySlug('puerto-del-rosario');
 
     this.titleService.setTitle('ruta de ' + this.origin.description + ' a ' + this.destination.description + ' - Horarios y Precios');
     this.metaService.updateTag({ name: 'description', 
@@ -140,7 +157,7 @@ export class LinesPage implements OnInit {
 
     this.loading = true;
 
-    this._linesService.getLines('87', '49').pipe(take(1)).subscribe({
+    this._linesService.getLines(origin, destination).pipe(take(1)).subscribe({
       next: (data: any) => {
 
         this.loading = false;
@@ -240,12 +257,50 @@ export class LinesPage implements OnInit {
           this.holidayData = matchingHoliday;
         }
 
-        this.getLines(this.origin.id_locations, this.destination.id_locations);
+
+        // aqui 
+        forkJoin({
+          originTown: this._townService.getTownBySlug(this.originSlugParam || ''),
+          destinationTown: this._townService.getTownBySlug(this.destinationSlugParam || '')
+        }).pipe(take(1)).subscribe({
+          next: ({ originTown, destinationTown }) => {
+            this.origin = originTown;
+            this.destination = destinationTown;
+
+              console.log(this.origin);
+              
+
+              console.log(this.destination);
+              
+            this.getLines(this.origin.id_locations, this.destination.id_locations);
+          },
+          error: (error) => {
+            this.loading = false;
+            this.error = true;
+          }
+        });   
+
+        
+        // this.getLines(this.origin.id_locations, this.destination.id_locations);
         
       },
       error: (error) => {
         this.loading = false;
         this.error = true;
+      }
+    });
+  }
+
+  getTownBySlug(slug: string): any {
+  
+    this._townService.getTownBySlug(slug).pipe(take(1)).subscribe({
+      next: (data: any) => {
+        return data;
+      },
+      error: (error: any) => {
+        this.loading = false;
+        this.error = true;
+        return null;
       }
     });
   }
