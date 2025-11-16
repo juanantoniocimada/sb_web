@@ -1,0 +1,25 @@
+<div class="route-map">
+
+  <ng-container *ngFor="let stop of stops; let i = index">
+    <div *ngIf="stop.name" class="stop"     
+        [ngClass]="{ 'red-border': stop.info && stop.info.trim() !== '' }"
+    >
+
+    <div class="stop-time">
+        {{ stop.time }} 
+    </div>
+
+      <div class="circle" [ngClass]="{
+        'circle-empty': stop.type === 'empty',
+        'circle-filled': stop.type === 'filled'
+      }"></div>
+
+      <div class="stop-name">{{ stop.name }}</div>
+
+    </div>
+    <div *ngIf="i < stops.length - 1" class="line" [ngClass]="{
+      'dashed': stops[i].type === 'empty' || stops[i + 1].type === 'empty',
+      'solid': stops[i].type === 'filled' && stops[i + 1].type === 'filled'
+    }"></div>
+  </ng-container>
+</div>

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-// import { ItemComponent } from 'src/app/components/item/item.component';
 // import { HomeToLines } from 'src/app/services/home-to-lines';
 
 import { take } from 'rxjs';
@@ -14,6 +13,7 @@ import { TownService } from '../../services/town.service';
 import { HolidaysService } from '../../services/holidays.service';
 import { extractTimeFromISO, getDayOfWeekFromISO } from '../../utils/utils';
 import { SliderLinesComponent } from '../../components/slider-lines/slider-lines.component';
+import { ItemComponent } from '../../components/item/item.component';
 
 @Component({
   selector: 'app-lines',
@@ -21,13 +21,13 @@ import { SliderLinesComponent } from '../../components/slider-lines/slider-lines
   styleUrls: ['./lines.page.scss'],
   standalone: true,
   providers: [TownService],
-  imports: [ 
+  imports: [
     HeaderComponent,
     FooterComponent,
     CommonModule,
     FormsModule,
     TranslateModule,
-    // ItemComponent,
+    ItemComponent,
     // ItemComponentCopy,
     SliderLinesComponent,
   ],
@@ -66,6 +66,8 @@ export class LinesPage implements OnInit {
   public activeFilters = false;
 
   public iAmGoingFrom: string = ' Voy de ( puerto del Rosario ) a ( Corralejo ). ';
+  // puerto del Rosario
+  // Corralejo
 
   public destination: any = {};
   public origin: any = {};

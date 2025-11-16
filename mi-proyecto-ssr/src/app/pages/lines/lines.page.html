@@ -31,11 +31,9 @@
       @if (mode === 'directRoute') {
         <app-slider-lines (filter)="filter($event)" class="app-slider-lines" [lines]="lines" />
 
-        <!--
-          <ion-item *ngIf="activeFilters" class="see-all" (click)="seeAll()">
+          <div *ngIf="activeFilters" class="see-all" (click)="seeAll()">
             {{ 'removeFilters' | translate }}
-          </ion-item>
-        -->
+          </div>
       }
 
       @if (mode === 'directRoute') {
@@ -53,10 +51,7 @@
 
             }
 
-            {{  hour.value  }} <br>
-            <!--
-              <app-item [item]="hour" [color]="hour.color" [index]="$index" [hour]="hour" [dateTimeValue]="dateTimeValue" />
-            -->
+            <app-item [item]="hour" [color]="hour.color" [index]="$index" [hour]="hour" [dateTimeValue]="dateTimeValue" />
 
           }
         } @else {
@@ -116,11 +111,9 @@
 
         <app-slider-lines (filter)="filter($event)" class="app-slider-lines" [lines]="lines" />
 
-      <!--
-        <ion-item *ngIf="activeFilters" class="see-all" (click)="seeAll()">
+        <div *ngIf="activeFilters" class="see-all" (click)="seeAll()">
           {{ 'removeFilters' | translate }}
-        </ion-item>
-      -->
+        </div>
 
       @if (hours.length > 0) {
         @for (item of hours; track $index) {
