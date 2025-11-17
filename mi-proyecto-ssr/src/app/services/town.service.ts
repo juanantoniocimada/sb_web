@@ -20,5 +20,9 @@ export class TownService {
   public getTownBySlug(slug: string): Observable<any> {
     return this._http.get<any>(`${this._apiUrl}/location/slug/${slug}`);
   }
+
+  public getCombinations(): Observable<any[]> {
+    return this._http.get<any[]>(`${this._apiUrl}/locations/combinations`);
+  }
   
 }

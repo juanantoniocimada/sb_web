@@ -61,7 +61,6 @@ export class HomePage implements OnInit {
   public error = false;
   public isRouteProhibited = false;
 
-
   towns: any[] = [];
 
   constructor(public translate: TranslateService) {
@@ -107,8 +106,13 @@ export class HomePage implements OnInit {
     this._townService.getTowns().pipe(take(1)).subscribe({
       next: (towns: any[]) => {
         this.loading = false;
+        
 
-        this.towns = towns;
+        // show_selector
+
+        this.towns = towns.filter(town => town.show_selector === '1');
+        
+
         // this.loadConfig(towns);
       },
       error: (error) => {
@@ -119,9 +123,6 @@ export class HomePage implements OnInit {
   }
 
   public find(): void {    
-
-    console.log(this.origin);
-    console.log(this.destination);
 
     const queryParams: any = {};
     if (this.dateValue) queryParams.date = this.dateValue;
