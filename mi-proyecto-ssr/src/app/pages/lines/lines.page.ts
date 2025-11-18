@@ -14,6 +14,7 @@ import { extractTimeFromISO, getDayOfWeekFromISO } from '../../utils/utils';
 import { SliderLinesComponent } from '../../components/slider-lines/slider-lines.component';
 import { ItemComponent } from '../../components/item/item.component';
 import { Title, Meta } from '@angular/platform-browser';
+import { ItemComponentCopy } from '../../components/item-copy/item-copy.component';
 
 @Component({
   selector: 'app-lines',
@@ -28,7 +29,7 @@ import { Title, Meta } from '@angular/platform-browser';
     FormsModule,
     TranslateModule,
     ItemComponent,
-    // ItemComponentCopy,
+    ItemComponentCopy,
     SliderLinesComponent,
   ],
 })

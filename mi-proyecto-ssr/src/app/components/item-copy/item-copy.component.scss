@@ -1,0 +1,29 @@
+.description {
+  width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.hour {
+  min-width: 100px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.item {
+  border-radius: 0.5em;
+  margin-top: 0.5em;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  .label {
+    padding-left: 10%;
+    color: gray;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid gainsboro;
+}

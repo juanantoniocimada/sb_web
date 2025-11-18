@@ -1,0 +1,14 @@
+<div 
+  class="item" 
+  lines="none"
+  [style]="getCardStyles(color)"
+  [ngStyle]="{ 'border': '2px solid ' + color }"
+  (click)="goToDetail(hour)"
+>
+  <div class="label">
+    <app-route-map [stops]="routeStops" [stepSelected]="stepSelected"></app-route-map>
+    <div style="text-align: right; font-size: small;">
+      {{ 'moreInformation' | translate }}
+    </div>
+  </div>
+</div>
