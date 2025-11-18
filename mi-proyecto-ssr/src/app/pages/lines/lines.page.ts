@@ -71,12 +71,12 @@ export class LinesPage implements OnInit {
   // private _homeToLines = inject(HomeToLines);
   private _holidaysService = inject(HolidaysService);
   private _townService = inject(TownService);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
 
   public activeFilters = false;
 
   public iAmGoingFrom: string = ' Voy de ( puerto del Rosario ) a ( Corralejo ). ';
-  // puerto del Rosario
-  // Corralejo
 
   public destination: any = {};
   public origin: any = {};
@@ -86,7 +86,7 @@ export class LinesPage implements OnInit {
   public browserLang: string | undefined = '';
 
   
-  constructor(public translate: TranslateService, private titleService: Title, private metaService: Meta) {
+  constructor(public translate: TranslateService) {
     this.browserLang = translate.getBrowserLang();
 
     if (this.browserLang) {

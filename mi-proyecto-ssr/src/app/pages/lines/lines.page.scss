@@ -5,6 +5,12 @@
   height: 100vh;
 }
 
+.see-all {
+  color: var(--brand-secondary);
+  border: 1px solid var(--brand-secondary);
+  border-radius: 0.5em;
+}
+
 .container {
   flex: 1;
   overflow-y: auto;
@@ -116,6 +122,7 @@
     border-radius: 6px;
     // font-weight: bolder;
   }
+  
 
   .item {
 

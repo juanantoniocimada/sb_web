@@ -9,6 +9,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { StatisticsService } from '../../services/statistics.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -53,6 +54,8 @@ export class HomePage implements OnInit {
   private _prohibitedRoutesService = inject(ProhibitedRoutesService);
   private _statisticsService = inject(StatisticsService);
   private _router = inject(Router);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
 
   /*
     indicators
@@ -84,6 +87,11 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.titleService.setTitle('Horarios y Precios - Transporte Público');
+    this.metaService.updateTag({ name: 'description', 
+      content: 'Consulta horarios y precios de transporte público entre diferentes destinos' });
+
     this.loadData();
   }
   
@@ -131,7 +139,7 @@ export class HomePage implements OnInit {
     const originSlug = this.origin.slug;
     const destinationSlug = this.destination.slug;
 
-    this._router.navigate(['/lines', originSlug, destinationSlug], { queryParams });
+    this._router.navigate(['/', originSlug, destinationSlug], { queryParams });
     
     // this.navigateTo();
   }

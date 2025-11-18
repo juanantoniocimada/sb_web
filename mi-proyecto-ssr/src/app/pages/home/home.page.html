@@ -9,52 +9,56 @@
 @else {
     <div class="container">
 
-      <div>
-        <label for="origin">
-          {{ originLabel }}
-        </label>
-        <select [(ngModel)]="origin" name="origin" id="origin">
-          @for (town of towns; track $index) {
+      <div class="line">
+        <div>
+          <label for="origin">
+            origin
+          </label>
+          <select [(ngModel)]="origin" name="origin" id="origin">
+            @for (town of towns; track $index) {
             <option [ngValue]="town">
               {{ town.description }}
             </option>
-          }
-        </select>
-      </div>
-
-      <div>
-        <label for="destination">
-          {{ destinationLabel }}
-        </label>
-        <select [(ngModel)]="destination" name="destination" id="destination">
-          @for (town of towns; track $index) {
+            }
+          </select>
+        </div>
+      
+        <div>
+          <label for="destination">
+            destination
+          </label>
+          <select [(ngModel)]="destination" name="destination" id="destination">
+            @for (town of towns; track $index) {
             <option [ngValue]="town">
               {{ town.description }}
             </option>
-          }
-        </select>
+            }
+          </select>
+        </div>
       </div>
 
-      <div>
-        <label for="date">
-          Date
-        </label>
-        <input type="date" id="date" name="date" [(ngModel)]="dateValue">
-      </div>
-
-      <div>
-        <label for="time">
-          Time
-        </label>
-        <input type="time" id="time" name="time" [(ngModel)]="timeValue">
+      <div class="line">
+        <div>
+          <label for="date">
+            Date
+          </label>
+          <input type="date" id="date" name="date" [(ngModel)]="dateValue">
+        </div>
+      
+        <div>
+          <label for="time">
+            Time
+          </label>
+          <input type="time" id="time" name="time" [(ngModel)]="timeValue">
+        </div>
       </div>
 
       <div (click)="find()">
         <button>
-          {{ 'search' | translate }}
+          search
         </button>
       </div>
-`
+
     </div>
 }
 

@@ -64,7 +64,7 @@ export class ItemComponent implements OnInit, OnChanges {
 
   public getCardStyles(color: any): any {
     const styles: any = {
-      '--background': `linear-gradient(to right, ${color} 10%, #ffffff 5%)`,
+      'background': `linear-gradient(to right, ${color} 10%, #ffffff 5%)`,
     };
 
     return styles;

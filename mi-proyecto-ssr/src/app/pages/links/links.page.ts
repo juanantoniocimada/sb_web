@@ -55,11 +55,8 @@ export class LinksPage implements OnInit {
       next: (combinations: any[]) => {
         this.loading = false;
         
-
         this.combinations = combinations; 
-        console.log(combinations);
                 
-
         // this.loadConfig(towns);
       },
       error: (error) => {

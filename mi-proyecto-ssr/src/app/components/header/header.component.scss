@@ -8,6 +8,11 @@
   align-items: center;
   color: var(--brand-tertiary);
   padding-left: 1em;
+
+  a {
+    text-decoration: none;
+    color: var(--brand-tertiary);
+  }
 }
 
 .highlight {

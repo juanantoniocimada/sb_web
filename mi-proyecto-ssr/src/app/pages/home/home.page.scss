@@ -11,21 +11,32 @@
   flex-direction: column;
   align-items: center;
   flex: 1;
+  gap: 1em;
 }
 
-select, input {
+.line {
+  width: 100%;
   border: 1px solid red;
-  cursor: pointer;
+  background-color: lightgreen;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1em;
+
+  label {
+    display: inline-block;
+    width: 150px;
+    background-color: lightcoral;
+    
+  }
+
+}
+
+select, input, button {
   width: 300px;
-  height: 50px;
+  height: 70px;
 }
 
 button {
-  border: 1px solid red;
-  width: 300px;
-  height: 50px;
-  cursor: pointer;
-  background-color: white;
-  color: var(--brand-secondary);
-  box-shadow: 0px 2px 3px gainsboro;
+
 }
