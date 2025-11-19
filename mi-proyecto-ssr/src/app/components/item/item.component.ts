@@ -5,6 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // import { HomeToLines } from 'src/app/services/home-to-lines';
 import { RouteMapComponent } from '../route-map/route-map.component';
 import { getDayOfWeekFromISO } from '../../utils/utils';
+import { HomeToLines } from '../../services/home-to-lines';
 
 @Component({
   selector: 'app-item',
@@ -29,7 +30,7 @@ export class ItemComponent implements OnInit, OnChanges {
     injects
   */
   private _router = inject(Router);
-  // private _homeToLines = inject(HomeToLines);
+  private _homeToLines = inject(HomeToLines);
 
   public translate = inject(TranslateService);
   public routeStops: any[]  = [];
@@ -80,9 +81,8 @@ export class ItemComponent implements OnInit, OnChanges {
 
     this.hour.detail.dest = this.hour.detail[this.hour.detail.length - 1];
 
-    // this.origin = this._homeToLines.getOrigin();
-
-    // this.destination = this._homeToLines.getDestination();
+    this.origin = this._homeToLines.getOrigin();
+    this.destination = this._homeToLines.getDestination();
 
     this.myCard ={
       card1: {

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // import { HomeToLines } from 'src/app/services/home-to-lines';
 import { RouteMapComponent } from '../route-map/route-map.component';
+import { HomeToLines } from '../../services/home-to-lines';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class ItemComponentCopy implements OnInit, OnChanges {
   */
   private _router = inject(Router);
   public translate = inject(TranslateService);
-  // private _homeToLines = inject(HomeToLines);
+  private _homeToLines = inject(HomeToLines);
 
   public myDest: any = {};
   public myCard: any = {
@@ -86,9 +87,8 @@ export class ItemComponentCopy implements OnInit, OnChanges {
 
     this.hour.detail.dest = this.hour.detail?.[this.hour.detail.length - 1] || null;
 
-    // this.origin = this._homeToLines.getOrigin();
-
-    // this.destination = this._homeToLines.getDestination();
+    this.origin = this._homeToLines.getOrigin();
+    this.destination = this._homeToLines.getDestination();
 
     this.myCard ={
       card1: {

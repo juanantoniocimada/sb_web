@@ -15,6 +15,7 @@ import { SliderLinesComponent } from '../../components/slider-lines/slider-lines
 import { ItemComponent } from '../../components/item/item.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ItemComponentCopy } from '../../components/item-copy/item-copy.component';
+import { HomeToLines } from '../../services/home-to-lines';
 
 @Component({
   selector: 'app-lines',
@@ -68,7 +69,7 @@ export class LinesPage implements OnInit {
   private _linesService = inject(LinesService);
   public _router = inject(Router);
   private _route = inject(ActivatedRoute);
-  // private _homeToLines = inject(HomeToLines);
+  private _homeToLines = inject(HomeToLines);
   private _holidaysService = inject(HolidaysService);
   private _townService = inject(TownService);
   private titleService = inject(Title);
@@ -236,8 +237,6 @@ export class LinesPage implements OnInit {
     this._holidaysService.getHolidays().pipe(take(1)).subscribe({
       next: (holidays: any[]) => {
 
-        this.loading = false;
-
         const selectedDate = new Date(this.dateTimeValue);
         const todayYear = selectedDate.getFullYear();
         const todayMonth = selectedDate.getMonth() + 1; // Months are 0-based
@@ -268,10 +267,12 @@ export class LinesPage implements OnInit {
             this.origin = originTown;
             this.destination = destinationTown;
 
-              console.log(this.origin);
-              
+            this._homeToLines.setData(
+              this.origin,
+              this.destination,
+              this.dateTimeValue
+            );
 
-              console.log(this.destination);
               
             this.getLines(this.origin.id_locations, this.destination.id_locations);
           },
