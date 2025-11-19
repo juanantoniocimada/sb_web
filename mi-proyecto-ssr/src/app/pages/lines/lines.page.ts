@@ -104,12 +104,10 @@ export class LinesPage implements OnInit {
     // Obtener query params opcionales
     this.dateValueParam = this._route.snapshot.queryParamMap.get('date');
     this.timeValueParam = this._route.snapshot.queryParamMap.get('time');
-    console.log('Origin slug:', this.originSlugParam);
-    console.log('Destination slug:', this.destinationSlugParam);
-    console.log('Date:', this.dateValueParam);
-    console.log('Time:', this.timeValueParam);
 
-    // this.getTownBySlug('puerto-del-rosario');
+
+    const dateTime = new Date(`${this.dateValueParam}T${this.timeValueParam}:00`);
+    this.dateTimeValue = dateTime.toISOString();
 
     this.titleService.setTitle('ruta de ' + this.origin.description + ' a ' + this.destination.description + ' - Horarios y Precios');
     this.metaService.updateTag({ name: 'description', 
@@ -124,16 +122,14 @@ export class LinesPage implements OnInit {
 
     this.loading = true;
     const routeIds = this.lines.map((line: any) => line.id_routes);
-    
-
-    // Formatear la hora como HH:MM:SS
+  
     const time = extractTimeFromISO(this.dateTimeValue);
     this.dayName = getDayOfWeekFromISO(this.dateTimeValue);
 
     const item = {
       routeIds: routeIds,
-      hourValue: '08:54:41',
-      dayName: 'sunday',
+      hourValue: time,
+      dayName: this.dayName,
       festive: festive,
     };    
 

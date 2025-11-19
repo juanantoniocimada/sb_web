@@ -5,6 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 // import { HomeToLines } from 'src/app/services/home-to-lines';
 import { RouteMapComponent } from '../route-map/route-map.component';
 import { HomeToLines } from '../../services/home-to-lines';
+import { getDayOfWeekFromISO } from '../../utils/utils';
 
 
 @Component({
@@ -66,7 +67,8 @@ export class ItemComponentCopy implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.getLocationByLocationsRoutesId(this.hour.id_hours_routes);    
+    this.getLocationByLocationsRoutesId(this.hour.id_hours_routes);  
+    
   }
 
   public getCardStyles(color: any): any {
@@ -79,7 +81,7 @@ export class ItemComponentCopy implements OnInit, OnChanges {
 
   public getLocationByLocationsRoutesId(id: string): void {
 
-    // this.dayOfWeek = getDayOfWeekFromISO(this.dateTimeValue);    
+    this.dayOfWeek = getDayOfWeekFromISO(this.dateTimeValue);    
 
     this.hour.detail = this.item.detail;
 
@@ -89,6 +91,12 @@ export class ItemComponentCopy implements OnInit, OnChanges {
 
     this.origin = this._homeToLines.getOrigin();
     this.destination = this._homeToLines.getDestination();
+
+    console.log(this.origin);
+    
+
+    console.log(this.destination);
+    
 
     this.myCard ={
       card1: {
