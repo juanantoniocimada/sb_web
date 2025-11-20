@@ -15,9 +15,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(),
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {

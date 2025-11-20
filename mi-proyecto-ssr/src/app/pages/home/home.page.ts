@@ -69,6 +69,9 @@ export class HomePage implements OnInit {
   constructor(public translate: TranslateService) {
     this.browserLang = translate.getBrowserLang();
 
+    console.log(translate.getBrowserLang());
+    
+
     if (this.browserLang) {
       translate.setDefaultLang(this.browserLang);
       translate.use(this.browserLang);
@@ -107,6 +110,13 @@ export class HomePage implements OnInit {
     }
   }
 
+  public flip(): void {
+    [this.origin, this.destination] = [
+      this.destination, 
+      this.origin,
+    ];
+  }
+
   public loadData(): void {
 
     this.loading = true;
@@ -117,6 +127,8 @@ export class HomePage implements OnInit {
         
 
         // show_selector
+
+        this.towns = towns.sort((a: { orden: number; }, b: { orden: number; }) => a.orden - b.orden);
 
         this.towns = towns.filter(town => town.show_selector === '1');
         
