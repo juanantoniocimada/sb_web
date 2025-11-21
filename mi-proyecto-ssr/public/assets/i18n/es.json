@@ -17,7 +17,7 @@
   "iAmGoingFromSEO": "bus / guagua {{origin}} a {{destination}}",
 
   "iAmGoingFromSEOH1": "Rutas de bus / guagua de {{origin}} a {{destination}}",
-  "iAmGoingFromSEOH2": "Rutas de bus / guagua de {{origin}} a {{destination}}",
+  "iAmGoingFromSEOH2": "Horarios de guagua de {{origin}} a {{destination}}",
 
   "linesFor": "Líneas para",
   "list": "Lista",

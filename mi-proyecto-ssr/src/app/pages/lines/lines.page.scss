@@ -13,9 +13,12 @@
 }
 
 .see-all {
+  margin-top: 1em;
+  padding: 1em;
   color: var(--brand-secondary);
   border: 1px solid var(--brand-secondary);
   border-radius: 0.5em;
+  width: fit-content;
 }
 
 .header {
@@ -34,14 +37,16 @@
   align-items: center;
 
     h1 {
-      border-bottom: 1px solid grey;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      color: var(--brand);
+      border-bottom: 3px solid grey;
+      // border-radius: 5px;
+      border-color: var(--brand);
+      padding: 0.2em;
+      color: gray;
     } 
 
     h2 {
-      font-size: small;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      // font-size: small;
+      // font-family: Verdana, Geneva, Tahoma, sans-serif;
       color: var(--brand);
 
     }
