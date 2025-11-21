@@ -77,7 +77,13 @@ export class LinesPage implements OnInit {
 
   public activeFilters = false;
 
-  public iAmGoingFrom: string = ' Voy de ( puerto del Rosario ) a ( Corralejo ). ';
+  /*
+    SEO Values
+  */
+  public iAmGoingFromSEOH1: string = '';
+  public iAmGoingFromSEOH2: string = '';
+
+  public iAmGoingFrom: string = '';
 
   public destination: any = {};
   public origin: any = {};
@@ -108,12 +114,6 @@ export class LinesPage implements OnInit {
 
     const dateTime = new Date(`${this.dateValueParam}T${this.timeValueParam}:00`);
     this.dateTimeValue = dateTime.toISOString();
-
-    this.titleService.setTitle('ruta de ' + this.origin.description + ' a ' + this.destination.description + ' - Horarios y Precios');
-    this.metaService.updateTag({ name: 'description', 
-      content: 'ruta de ' + this.origin.description + ' a ' + this.destination.description });
-
-    this.iAmGoingFrom = this.translate.instant('iAmGoingFrom', { origin: this.origin.description, destination: this.destination.description });
 
     this.loadHolidays();
   }
@@ -206,7 +206,8 @@ export class LinesPage implements OnInit {
     // this._homeToLines.setOrigin(this.origin);
     // this._homeToLines.setDestination(this.destination)
     
-    this.iAmGoingFrom = this.translate.instant('iAmGoingFrom', { origin: this.origin.description, destination: this.destination.description });
+
+    
     this.getLines(this.origin.id_locations, this.destination.id_locations);
   }
 
@@ -253,8 +254,6 @@ export class LinesPage implements OnInit {
           this.holidayData = matchingHoliday;
         }
 
-
-        // aqui 
         forkJoin({
           originTown: this._townService.getTownBySlug(this.originSlugParam || ''),
           destinationTown: this._townService.getTownBySlug(this.destinationSlugParam || '')
@@ -268,6 +267,10 @@ export class LinesPage implements OnInit {
               this.destination,
               this.dateTimeValue
             );
+
+            this.titleService.setTitle('ruta de ' + this.origin.description + ' a ' + this.destination.description + ' - Horarios y Precios');
+            this.metaService.updateTag({ name: 'description', 
+              content: 'bus ' + this.origin.description + ' a ' + this.destination.description });
 
               
             this.getLines(this.origin.id_locations, this.destination.id_locations);

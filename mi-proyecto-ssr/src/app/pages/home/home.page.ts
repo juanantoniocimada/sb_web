@@ -69,9 +69,6 @@ export class HomePage implements OnInit {
   constructor(public translate: TranslateService) {
     this.browserLang = translate.getBrowserLang();
 
-    console.log(translate.getBrowserLang());
-    
-
     if (this.browserLang) {
       translate.setDefaultLang(this.browserLang);
       translate.use(this.browserLang);

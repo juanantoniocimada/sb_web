@@ -18,6 +18,50 @@
   border-radius: 0.5em;
 }
 
+.header {
+
+  box-shadow: 0px 2px 3px gainsboro;
+
+  margin-left: 10px;
+  margin-right: 10px;
+
+  padding-left: 5px;
+  padding-right: 5px;
+
+  background-color: gainsboro;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+    h1 {
+      border-bottom: 1px solid grey;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: var(--brand);
+    } 
+
+    h2 {
+      font-size: small;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: var(--brand);
+
+    }
+
+}
+
+.link-right {
+
+  border-bottom: 1px solid;
+  text-decoration: none;
+  color: var(--brand);
+  font-weight: bolder;
+
+  a {
+    text-decoration: none;
+    color: var(--brand);
+    font-weight: bolder;
+  }
+}
+
 .combined {
 
   display: flex;

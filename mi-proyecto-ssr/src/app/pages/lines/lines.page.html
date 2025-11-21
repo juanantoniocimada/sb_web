@@ -23,10 +23,33 @@
         {{ 'holidaySchedulesApply' | translate }}
 
       </div>
+      
+      <div class="header">
 
-      <div class="mode" *ngIf="origin?.description && destination?.description">
-        <a href="">{{ iAmGoingFrom }}</a>
+        <div class="left">
+          <h1>
+            {{ 'iAmGoingFromSEOH1' | translate:{ origin: origin.description, destination: destination.description } }} </h1>
+          
+          <h2>
+            {{ 'iAmGoingFromSEOH2' | translate:{ origin: origin.description, destination: destination.description } }}
+          </h2>
+          </div>
+
+        <div class="right">
+
+            <div class="link-right">
+            vuelta  <a href="">bus (guagua) {{destination.description}} - {{ origin.description }}</a>
+            </div>
+            
+        </div>
+
       </div>
+
+      <!--
+        <div class="mode" *ngIf="origin?.description && destination?.description">
+          <a href="">{{ iAmGoingFromSEO }}</a>
+        </div>
+      -->
 
       @if (mode === 'directRoute') {
         <app-slider-lines (filter)="filter($event)" class="app-slider-lines" [lines]="lines" />
