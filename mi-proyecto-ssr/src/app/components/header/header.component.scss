@@ -5,13 +5,13 @@
   display: flex;
   align-items: center;
   color: var(--brand-tertiary);
-  padding-left: 1em;
-  padding-right: 1em;
+
 
   .brand {
     font-family: 'Architects Daughter', sans-serif;
     text-decoration: none;
     color: var(--brand-tertiary);
+    padding-left: 2em;
   }
 }
 
@@ -23,7 +23,8 @@
 .language-switch {
   position: relative;
   display: inline-block;
-   margin-left: auto;
+  margin-left: auto;
+  padding-right: 2em;
 
   .dropdown-btn {
     background: none;
