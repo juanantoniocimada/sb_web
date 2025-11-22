@@ -10,13 +10,14 @@ import { StatisticsService } from '../../services/statistics.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
+import { ROUTE_PATHS } from '../../helpers/routes.helper';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [
+  imports: [ 
     HeaderComponent,
     FooterComponent,
     TranslateModule,
@@ -141,14 +142,12 @@ export class HomePage implements OnInit {
 
   public find(): void {    
 
-    const queryParams: any = {};
-    if (this.dateValue) queryParams.date = this.dateValue;
-    if (this.timeValue) queryParams.time = this.timeValue;
-
     const originSlug = this.origin.slug;
     const destinationSlug = this.destination.slug;
 
-    this._router.navigate(['/', originSlug, destinationSlug], { queryParams });
+    this._router.navigateByUrl(
+      ROUTE_PATHS.lines(originSlug, destinationSlug, this.dateValue, this.timeValue, this.browserLang)
+    );
     
     // this.navigateTo();
   }

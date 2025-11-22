@@ -92,12 +92,6 @@ export class ItemComponentCopy implements OnInit, OnChanges {
     this.origin = this._homeToLines.getOrigin();
     this.destination = this._homeToLines.getDestination();
 
-    console.log(this.origin);
-    
-
-    console.log(this.destination);
-    
-
     this.myCard ={
       card1: {
         hora: this.hour.value,
