@@ -16,20 +16,19 @@
 
 .line {
   width: 100%;
-  border: 1px solid gray;
-  background-color: gainsboro;
+  // border: 1px solid gray;
+  // background-color: gainsboro;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 1em;
 
   label {
+    color: var(--brand);
     display: inline-block;
     width: 150px;
-    background-color: gainsboro;
-    
+    // background-color: gainsboro;
   }
-
 }
 
 select, input, button {
@@ -37,14 +36,42 @@ select, input, button {
   height: 70px;
 }
 
+.line-item {
+  border-bottom: 2px solid var(--brand-secondary);
+  
+}
+
+select, input {
+  border: 0px solid gray;
+  cursor: pointer;
+}
+
+input {
+  height: 40px;
+  color: var(--brand-secondary);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  border: 1px solid gainsboro;
+  box-shadow: 0px 2px 3px grey;
+  background: white;
+  border-radius: 5px;;
+  padding: 1em;
+}
+
 button {
+  background: white;
+  border: 0px;
   padding-top: 1em;
   padding-bottom: 1em;
-  background: white;
-
-  // width: 100%;
   color: var(--brand-secondary);
-  box-shadow: 0px 2px 3px gainsboro;
+  box-shadow: 4px 4px 4px gainsboro;
+
+  &:hover {
+    background: var(--brand-secondary);
+    color: white;
+    box-shadow: 6px 6px 8px gainsboro;
+    transition: background 0.2s, color 0.2s;
+  }
 }
 
 .flip {

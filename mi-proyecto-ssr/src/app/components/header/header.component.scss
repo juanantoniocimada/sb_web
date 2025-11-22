@@ -20,6 +20,13 @@
   text-decoration: underline;
 }
 
+.line-item {
+  margin-left: auto;
+  margin-right: 1em;
+  font-weight: bolder;
+  color: var(--brand-tertiary);
+}
+
 .language-switch {
   position: relative;
   display: inline-block;

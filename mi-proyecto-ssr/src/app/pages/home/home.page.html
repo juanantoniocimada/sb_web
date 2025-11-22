@@ -11,7 +11,7 @@
 
 
       <div class="line">
-        <div>
+        <div class="line-item">
           <label for="origin">
             {{'origin' | translate }}
           </label>
@@ -28,7 +28,7 @@
           <i class="icon ion-md-swap"></i>
         </div>
 
-        <div>
+        <div class="line-item">
           <label for="destination">
             {{'destination' | translate }}
           </label>
@@ -45,16 +45,10 @@
 
       <div class="line">
         <div>
-          <label for="date">
-            Date
-          </label>
           <input type="date" id="date" name="date" [(ngModel)]="dateValue">
         </div>
       
         <div>
-          <label for="time">
-            Time
-          </label>
           <input type="time" id="time" name="time" [(ngModel)]="timeValue">
         </div>
       </div>
