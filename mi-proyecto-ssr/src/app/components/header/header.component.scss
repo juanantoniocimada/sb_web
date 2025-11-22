@@ -2,14 +2,14 @@
   width: 100%;
   height: 60px;
   background-color: #028997;
-  font-family: 'Architects Daughter', sans-serif;
   display: flex;
-  justify-content: left;
   align-items: center;
   color: var(--brand-tertiary);
   padding-left: 1em;
+  padding-right: 1em;
 
-  a {
+  .brand {
+    font-family: 'Architects Daughter', sans-serif;
     text-decoration: none;
     color: var(--brand-tertiary);
   }
@@ -18,4 +18,65 @@
 .highlight {
   color: var(--brand-secondary);
   text-decoration: underline;
+}
+
+.language-switch {
+  position: relative;
+  display: inline-block;
+   margin-left: auto;
+
+  .dropdown-btn {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    transition: background 0.2s;
+    outline: none;
+    color: var(--brand-tertiary);
+  }
+
+  .dropdown-btn:focus {
+    background: #f0f0f0;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    margin: 0;
+    padding: 0.5em 0;
+    min-width: 120px;
+    z-index: 10;
+    list-style: none;
+  }
+
+  &:hover .dropdown-menu,
+  &:focus-within .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 0.5em 1em;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .dropdown-menu a:hover,
+  .dropdown-menu a:focus {
+    background: #f0f0f0;
+    color: #007bff;
+  }
 }

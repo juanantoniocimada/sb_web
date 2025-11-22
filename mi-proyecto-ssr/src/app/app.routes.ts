@@ -1,22 +1,21 @@
 import { Routes } from '@angular/router';
-import { ROUTE_CONFIG } from './helpers/routes.helper';
 
 export const routes: Routes = [
   {
-    path: ROUTE_CONFIG.HOME,
+    path: '',
     loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
   },
   {
-    path: ROUTE_CONFIG.LINES,
+    path: 'lines/:origin/:destination',
     loadComponent: () => import('./pages/lines/lines.page').then((m) => m.LinesPage),
   },
   {
-    path: ROUTE_CONFIG.LINKS,
+    path: 'links',
     loadComponent: () => import('./pages/links/links.page').then((m) => m.LinksPage),
   },
   {
     path: '',
-    redirectTo: ROUTE_CONFIG.HOME,
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 ];

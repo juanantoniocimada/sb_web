@@ -16,6 +16,7 @@ export class HeaderComponent {
   @Input() page: string = '';
   @Input() text: string = '';
 
+  currentLang: string = 'ES';
 
 
 }

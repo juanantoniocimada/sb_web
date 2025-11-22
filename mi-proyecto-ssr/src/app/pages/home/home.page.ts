@@ -10,14 +10,13 @@ import { StatisticsService } from '../../services/statistics.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { ROUTE_PATHS } from '../../helpers/routes.helper';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [ 
+  imports: [   
     HeaderComponent,
     FooterComponent,
     TranslateModule,
@@ -115,6 +114,14 @@ export class HomePage implements OnInit {
     ];
   }
 
+  public setOrigin(town: any): void {
+    this.origin = town;
+  }
+
+  public setDestination(town: any): void {
+    this.destination = town;
+  }
+
   public loadData(): void {
 
     this.loading = true;
@@ -129,6 +136,14 @@ export class HomePage implements OnInit {
         this.towns = towns.sort((a: { orden: number; }, b: { orden: number; }) => a.orden - b.orden);
 
         this.towns = towns.filter(town => town.show_selector === '1');
+
+        const origin = towns.find((town: any) =>
+          town.default_home_origin === "1");
+        const destination = towns.find((town: any) =>
+          town.default_home_destination === "1");
+
+        this.setDestination(destination);
+        this.setOrigin(origin);
         
 
         // this.loadConfig(towns);
@@ -146,7 +161,7 @@ export class HomePage implements OnInit {
     const destinationSlug = this.destination.slug;
 
     this._router.navigateByUrl(
-      ROUTE_PATHS.lines(originSlug, destinationSlug, this.dateValue, this.timeValue, this.browserLang)
+      `lines/${originSlug}/${destinationSlug}`
     );
     
     // this.navigateTo();

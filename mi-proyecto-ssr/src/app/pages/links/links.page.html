@@ -11,13 +11,9 @@
 
       @for (item of combinations; track $index) {
         <div class="link-item">
-          <div>
-            <p><strong>Origin:</strong> {{ item.origin_desc }} ({{ item.origin_id }})</p>
-            <p><strong>Destination:</strong> {{ item.dest_desc }} ({{ item.dest_id }})</p>
-            <a href="/{{ item.origin_slug }}/{{ item.dest_slug }}">
-              bus {{ item.origin_desc }} - {{ item.dest_desc }}
-            </a>
-          </div>
+          <a href="/{{ item.origin_slug }}/{{ item.dest_slug }}">
+            bus {{ item.origin_desc }} - {{ item.dest_desc }}
+          </a>
         </div>
       }
 

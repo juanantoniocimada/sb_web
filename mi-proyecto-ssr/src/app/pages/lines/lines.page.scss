@@ -55,15 +55,20 @@
 
 .link-right {
 
-  border-bottom: 1px solid;
-  text-decoration: none;
+  // border-bottom: 1px solid;
+  // text-decoration: none;
   color: var(--brand);
   font-weight: bolder;
 
   a {
-    text-decoration: none;
+    // text-decoration: none;
     color: var(--brand);
     font-weight: bolder;
+  }
+
+  i {
+    margin-left: 5px;
+    color: var(--brand);
   }
 }
 
