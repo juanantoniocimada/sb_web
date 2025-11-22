@@ -23,7 +23,7 @@
 
 .header {
 
-  box-shadow: 0px 2px 3px gainsboro;
+  // box-shadow: 0px 2px 3px gainsboro;
 
   margin-left: 10px;
   margin-right: 10px;
@@ -31,23 +31,28 @@
   padding-left: 5px;
   padding-right: 5px;
 
-  background-color: gainsboro;
+  // background-color: gainsboro;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+    .left {
+      width: 50%;
+      padding-right: 5em;
+    }
+
+
     h1 {
-      border-bottom: 3px solid grey;
-      // border-radius: 5px;
-      border-color: var(--brand);
+      border-bottom: 3px solid var(--brand-secondary);
+      color: var(--brand-secondary);
       padding: 0.2em;
-      color: gray;
     } 
 
     h2 {
+      
       // font-size: small;
       // font-family: Verdana, Geneva, Tahoma, sans-serif;
-      color: var(--brand);
+      color: gray;
 
     }
 
@@ -59,9 +64,13 @@
   // text-decoration: none;
   color: var(--brand);
   font-weight: bolder;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  padding: 0.5em;
+  cursor: pointer;
 
   a {
-    // text-decoration: none;
+    text-decoration: none;
     color: var(--brand);
     font-weight: bolder;
   }
