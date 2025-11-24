@@ -103,16 +103,17 @@ export class LinesPage implements OnInit {
   }
 
   ngOnInit(): void {
-    // Obtener parámetros de la ruta
     this.originSlugParam = this._route.snapshot.paramMap.get('origin');
     this.destinationSlugParam = this._route.snapshot.paramMap.get('destination');
     
-    // Obtener query params opcionales
     this.dateValueParam = this._route.snapshot.queryParamMap.get('date');
     this.timeValueParam = this._route.snapshot.queryParamMap.get('time');
-
+    
+    console.log(this.dateValueParam);
+    console.log(this.timeValueParam);
 
     const dateTime = new Date(`${this.dateValueParam}T${this.timeValueParam}:00`);
+
     this.dateTimeValue = dateTime.toISOString();
 
     this.loadHolidays();

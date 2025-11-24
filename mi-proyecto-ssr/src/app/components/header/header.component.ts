@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -12,11 +13,23 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
 
-  @Output() changeHeader = new EventEmitter<void>();
   @Input() page: string = '';
   @Input() text: string = '';
 
-  currentLang: string = 'ES';
+  public browserLang: string | undefined = '';
 
+  constructor(public translate: TranslateService) {
+
+    this.browserLang = translate.getBrowserLang();
+
+    if (this.browserLang) {
+      translate.setDefaultLang(this.browserLang);
+      translate.use(this.browserLang);
+    }
+
+    console.log(this.browserLang);
+    
+    
+  }
 
 }

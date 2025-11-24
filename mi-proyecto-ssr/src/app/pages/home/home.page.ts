@@ -37,9 +37,11 @@ export class HomePage implements OnInit {
   */
   public origin: any;
   public destination: any;
+  
   public dateValue: string = '';
   public timeValue: string = '';
-  public dateTimeValue: string = '';
+
+  // public dateTimeValue: string = '';
 
   /*
     labels
@@ -82,6 +84,7 @@ export class HomePage implements OnInit {
         // this.islandLabel = translations.island;
       });
 
+
     // this.dateTimeValue = new Date().toISOString();
     // this._initializeUserId();
   }
@@ -91,6 +94,15 @@ export class HomePage implements OnInit {
     this.titleService.setTitle('Horarios y Precios - Transporte Público');
     this.metaService.updateTag({ name: 'description', 
       content: 'Consulta horarios y precios de transporte público entre diferentes destinos' });
+
+    if (!this.dateValue) {
+      const now = new Date();
+      this.dateValue = now.toISOString().slice(0, 10); // 'YYYY-MM-DD'
+    }
+    if (!this.timeValue) {
+      const now = new Date();
+      this.timeValue = now.toTimeString().slice(0, 5); // 'HH:mm'
+    }
 
     this.loadData();
   }
@@ -160,9 +172,16 @@ export class HomePage implements OnInit {
     const originSlug = this.origin.slug;
     const destinationSlug = this.destination.slug;
 
-    this._router.navigateByUrl(
-      `lines/${originSlug}/${destinationSlug}`
-    );
+    const queryParams: any = {};
+    if (this.dateValue) queryParams.date = this.dateValue;
+    if (this.timeValue) queryParams.time = this.timeValue;
+
+    console.log(this.dateValue);
+    console.log(this.timeValue);
+
+    
+
+    this._router.navigate(['lines/', originSlug, destinationSlug], { queryParams });
     
     // this.navigateTo();
   }
@@ -191,7 +210,7 @@ export class HomePage implements OnInit {
         const body = {
           origin: this.origin.description,
           destination: this.destination.description,
-          datetime_input: this.dateTimeValue,
+          // datetime_input: this.dateTimeValue,
           datetime_search: new Date().toISOString(),
           // username: localStorage.getItem('userId') || 'unknown'
         };
