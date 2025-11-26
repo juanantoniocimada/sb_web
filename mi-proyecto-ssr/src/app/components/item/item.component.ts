@@ -43,17 +43,11 @@ export class ItemComponent implements OnInit, OnChanges {
   public isOpen = false;
   public msjPopover = "";
   public dayOfWeek = '';
-  public browserLang: string | undefined = '';
   public destination :any = {};
   public origin :any = {};
 
   constructor() {
-    this.browserLang = this.translate.getBrowserLang();
-
-    if (this.browserLang) {
-      this.translate.setDefaultLang(this.browserLang);
-      this.translate.use(this.browserLang);
-    }
+    // this.translate.use('es');
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.getLocationByLocationsRoutesId();    

@@ -19,15 +19,9 @@ export class SliderLinesComponent {
   
   public dateTimeValue= '';
   public dayOfWeek = '';
-  public browserLang: string |undefined = '';
 
   constructor(public translate: TranslateService) {
-    this.browserLang = translate.getBrowserLang();
-
-    if(this.browserLang) {
-      translate.setDefaultLang(this.browserLang);
-      translate.use(this.browserLang);
-    }
+      // translate.use('en');
   }
 
   public filterEmit(line: any): void {

@@ -13,7 +13,14 @@
   "theConsultedDayIs": "the consulted day is the",
   "linesFor": "Lines for",
   "holidaySchedulesApply": "the schedules are those of a holiday.",
-  "iAmGoingFrom": "I am going from ( {{origin}} ) to ( {{destination}} ).",
+
+  "iAmGoingFrom": "I am going from ({{origin}}) to ({{destination}}).",
+  "iAmGoingFromSEO": "Bus / Guagua from {{origin}} to {{destination}}",
+
+  "iAmGoingFromSEOH1": "Routes from {{origin}} to {{destination}}",
+  "iAmGoingFromSEOH2": "Bus schedules from {{origin}} to {{destination}}",
+
+
   "list": "List",
   "map": "Map",
   "line": "Line",

@@ -39,6 +39,7 @@ export class LinesPage implements OnInit {
 
   public originSlugParam : string | null = null;
   public destinationSlugParam : string | null = null;
+
   public dateValueParam : string | null = null;
   public timeValueParam : string | null = null;
   
@@ -90,27 +91,19 @@ export class LinesPage implements OnInit {
 
   public loading: boolean = false;
 
-  public browserLang: string | undefined = '';
-
   
   constructor(public translate: TranslateService) {
-    this.browserLang = translate.getBrowserLang();
-
-    if (this.browserLang) {
-      translate.setDefaultLang(this.browserLang);
-      translate.use(this.browserLang);
-    }
+    let lang = this._route.snapshot.paramMap.get('lang'); 
+  
+    this.translate.use(lang || 'en');
   }
 
   ngOnInit(): void {
     this.originSlugParam = this._route.snapshot.paramMap.get('origin');
     this.destinationSlugParam = this._route.snapshot.paramMap.get('destination');
-    
+
     this.dateValueParam = this._route.snapshot.queryParamMap.get('date');
     this.timeValueParam = this._route.snapshot.queryParamMap.get('time');
-    
-    console.log(this.dateValueParam);
-    console.log(this.timeValueParam);
 
     const dateTime = new Date(`${this.dateValueParam}T${this.timeValueParam}:00`);
 
@@ -269,7 +262,7 @@ export class LinesPage implements OnInit {
               this.dateTimeValue
             );
 
-            this.titleService.setTitle('ruta de ' + this.origin.description + ' a ' + this.destination.description + ' - Horarios y Precios');
+            this.titleService.setTitle('ruta de ' + this.origin.description + ' a ' + this.destination.description + ' - fuerteguagua');
             this.metaService.updateTag({ name: 'description', 
               content: 'bus ' + this.origin.description + ' a ' + this.destination.description });
 

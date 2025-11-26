@@ -30,8 +30,6 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class HomePage implements OnInit {
 
-  public browserLang: string | undefined = '';
-
   /*  
     values
   */
@@ -69,12 +67,8 @@ export class HomePage implements OnInit {
   towns: any[] = [];
 
   constructor(public translate: TranslateService) {
-    this.browserLang = translate.getBrowserLang();
 
-    if (this.browserLang) {
-      translate.setDefaultLang(this.browserLang);
-      translate.use(this.browserLang);
-    }
+    // translate.use('en');
 
     this.translate
       .get(['origin', 'destination', 'island'])
@@ -91,9 +85,13 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
 
-    this.titleService.setTitle('Horarios y Precios - Transporte Público');
+    this.titleService.setTitle('bus fuerteventura - fuerteguagua');
+
     this.metaService.updateTag({ name: 'description', 
       content: 'Consulta horarios y precios de transporte público entre diferentes destinos' });
+
+    this.metaService.updateTag({ name: 'keywords', 
+      content: 'horarios, precios, transporte público, rutas, autobuses, ferris, conexiones' });
 
     if (!this.dateValue) {
       const now = new Date();
@@ -176,12 +174,7 @@ export class HomePage implements OnInit {
     if (this.dateValue) queryParams.date = this.dateValue;
     if (this.timeValue) queryParams.time = this.timeValue;
 
-    console.log(this.dateValue);
-    console.log(this.timeValue);
-
-    
-
-    this._router.navigate(['lines/', originSlug, destinationSlug], { queryParams });
+    this._router.navigate(['/', 'es', originSlug, destinationSlug], { queryParams });
     
     // this.navigateTo();
   }

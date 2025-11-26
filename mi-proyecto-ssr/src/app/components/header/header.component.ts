@@ -19,17 +19,7 @@ export class HeaderComponent {
   public browserLang: string | undefined = '';
 
   constructor(public translate: TranslateService) {
-
-    this.browserLang = translate.getBrowserLang();
-
-    if (this.browserLang) {
-      translate.setDefaultLang(this.browserLang);
-      translate.use(this.browserLang);
-    }
-
-    console.log(this.browserLang);
-    
-    
+    // translate.use(this.browserLang);    
   }
 
 }

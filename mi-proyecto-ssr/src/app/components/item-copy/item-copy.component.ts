@@ -49,12 +49,9 @@ export class ItemComponentCopy implements OnInit, OnChanges {
   public origin :any = {};
 
   constructor() {
-    this.browserLang = this.translate.getBrowserLang();
 
-    if (this.browserLang) {
-      this.translate.setDefaultLang(this.browserLang);
-      this.translate.use(this.browserLang);
-    }
+    // this.translate.use('es');
+    
   }
 
   ngOnChanges(changes: any): void {
