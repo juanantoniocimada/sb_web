@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class HolidaysService {
-  private _apiUrl = environment.urlAPIV2;
+  private _apiUrl = environment.apiTest;
   private _http = inject(HttpClient);
 
   public getHolidays(): Observable<any> {

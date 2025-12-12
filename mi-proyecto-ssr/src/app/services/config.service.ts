@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class ConfigService {
 
-  private _apiUrl = environment.urlAPIV2;
+  private _apiUrl = environment.apiTest;
   private _http = inject(HttpClient);
 
   public iosVersion: string | null = '1.3';

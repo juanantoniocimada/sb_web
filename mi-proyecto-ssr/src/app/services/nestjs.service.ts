@@ -6,13 +6,14 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class StatisticsService {
+export class NestJSService {
 
-  private _apiUrl = environment.apiTest;
+  private _apiUrl = environment.nestJs;
   private _http = inject(HttpClient);
 
-  public addStatistics(data: any): Observable<any> {
-    const url = `${this._apiUrl}/statistics`;
-    return this._http.post(url, data);
+  public testConnection(): Observable<any> {
+    const url = `${this._apiUrl}/islands`;
+    return this._http.get(url);
   }
+
 }

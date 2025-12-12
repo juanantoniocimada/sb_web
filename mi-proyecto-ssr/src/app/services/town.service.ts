@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class TownService {
 
-  private _apiUrl = environment.urlAPIV2;
+  private _apiUrl = environment.apiTest;
   private _http = inject(HttpClient);
 
   public getTowns(): Observable<any[]> {

@@ -10,6 +10,7 @@ import { StatisticsService } from '../../services/statistics.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
+import { NestJSService } from '../../services/nestjs.service';
 
 @Component({
   selector: 'app-home',
@@ -50,6 +51,9 @@ export class HomePage implements OnInit {
   /*
     injects
   */
+
+  nestJs = inject(NestJSService);
+
   private _townService = inject(TownService);
   private _prohibitedRoutesService = inject(ProhibitedRoutesService);
   private _statisticsService = inject(StatisticsService);
@@ -103,6 +107,21 @@ export class HomePage implements OnInit {
     }
 
     this.loadData();
+
+    this.pruebaNestJs();
+  }
+
+  pruebaNestJs() {
+
+    this.nestJs.testConnection().pipe(take(1)).subscribe({
+      next: (data: any) => {
+        console.log('NestJS Connection Successful:', data);
+      },
+      error: (error) => {
+        console.error('NestJS Connection Error:', error);
+      },
+    });
+
   }
   
   private _generateRandomId(): string {
