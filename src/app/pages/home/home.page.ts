@@ -108,20 +108,7 @@ export class HomePage implements OnInit {
 
     this.loadData();
 
-    this.pruebaNestJs();
-  }
-
-  pruebaNestJs() {
-
-    this.nestJs.testConnection().pipe(take(1)).subscribe({
-      next: (data: any) => {
-        console.log('NestJS Connection Successful:', data);
-      },
-      error: (error) => {
-        console.error('NestJS Connection Error:', error);
-      },
-    });
-
+    // this.pruebaNestJs();
   }
   
   private _generateRandomId(): string {
@@ -155,21 +142,18 @@ export class HomePage implements OnInit {
 
     this.loading = true;
 
-    this._townService.getTowns().pipe(take(1)).subscribe({
+    this.nestJs.getLocations().pipe(take(1)).subscribe({
       next: (towns: any[]) => {
         this.loading = false;
         
-
-        // show_selector
-
         this.towns = towns.sort((a: { orden: number; }, b: { orden: number; }) => a.orden - b.orden);
 
-        this.towns = towns.filter(town => town.show_selector === '1');
+        this.towns = towns.filter(town => town.show_selector === 1);
 
         const origin = towns.find((town: any) =>
-          town.default_home_origin === "1");
+          town.default_home_origin === 1);
         const destination = towns.find((town: any) =>
-          town.default_home_destination === "1");
+          town.default_home_destination === 1);
 
         this.setDestination(destination);
         this.setOrigin(origin);
