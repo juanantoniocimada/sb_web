@@ -30,4 +30,9 @@ export class NestJSService {
     const url = `${this._apiUrl}/holidays`;
     return this._http.get(url)
   }
+
+  public addStatistics(data: any): Observable<any> {
+    const url = `${this._apiUrl}/statistics`;
+    return this._http.post(url, data);
+  }
 }

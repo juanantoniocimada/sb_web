@@ -210,7 +210,7 @@ export class HomePage implements OnInit {
         };
 
         this.loading = true;
-        this._statisticsService.addStatistics(body).subscribe({
+        this.nestJs.addStatistics(body).subscribe({
           next: () => {
 
             this.loading = false;
