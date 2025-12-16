@@ -9,6 +9,11 @@
 @else {
     <div class="container">
 
+      @if (isRouteProhibited) {
+        <div>
+          ruta prohibida: {{ isRouteProhibited }}
+        </div>
+      }
 
       <div class="line">
         <div class="line-item ">

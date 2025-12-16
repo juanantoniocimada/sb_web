@@ -143,12 +143,18 @@ export class HomePage implements OnInit {
     this.loading = true;
 
     this.nestJs.getLocations().pipe(take(1)).subscribe({
-      next: (towns: any[]) => {
+      next: (data: any) => {
+
+
+        const towns = data.data;
+
+        console.log(towns);
+
         this.loading = false;
         
         this.towns = towns.sort((a: { orden: number; }, b: { orden: number; }) => a.orden - b.orden);
 
-        this.towns = towns.filter(town => town.show_selector === 1);
+        this.towns = towns.filter((town: any) => town.show_selector === 1);
 
         const origin = towns.find((town: any) =>
           town.default_home_origin === 1);
@@ -169,17 +175,7 @@ export class HomePage implements OnInit {
   }
 
   public find(): void {    
-
-    const originSlug = this.origin.slug;
-    const destinationSlug = this.destination.slug;
-
-    const queryParams: any = {};
-    if (this.dateValue) queryParams.date = this.dateValue;
-    if (this.timeValue) queryParams.time = this.timeValue;
-
-    this._router.navigate(['/', 'es', originSlug, destinationSlug], { queryParams });
-    
-    // this.navigateTo();
+    this.navigateTo();
   }
 
   public async navigateTo(): Promise<void> {
@@ -189,15 +185,17 @@ export class HomePage implements OnInit {
   public loadProhibitedRoutes(): void {
 
     this.loading = true;
-    this._prohibitedRoutesService.getAll().pipe(take(1)).subscribe({
-      next: (prohibitedRoutes: any[]) => {
+    this.nestJs.getProhibitedRoutes().pipe(take(1)).subscribe({
+      next: (data: any) => {
 
-        this.loading = false;
+      const prohibitedRoutes = data.data;
+      
+      this.loading = false;
 
-        this.isRouteProhibited = prohibitedRoutes.some(route =>
-          (route.origin === this.origin.id_locations && route.destination === this.destination.id_locations) ||
-          (route.origin === this.destination.id_locations && route.destination === this.origin.id_locations)
-        );
+      this.isRouteProhibited = prohibitedRoutes.some((route: any) =>
+        (route.origin === String(this.origin.id_locations) && route.destination === String(this.destination.id_locations)) ||
+        (route.origin === String(this.destination.id_locations) && route.destination === String(this.origin.id_locations))
+      );
 
         if (this.origin.id_locations === this.destination.id_locations) {
           this.isRouteProhibited = true;
@@ -225,12 +223,17 @@ export class HomePage implements OnInit {
             );
             */
                        
+            const originSlug = this.origin.slug;
+            const destinationSlug = this.destination.slug;
+
+            const queryParams: any = {};
+            if (this.dateValue) queryParams.date = this.dateValue;
+            if (this.timeValue) queryParams.time = this.timeValue;
 
             if (!this.isRouteProhibited) {
-              this._router.navigate(['/lines']).finally(() => {
-              
-              });
+              this._router.navigate(['/', 'es', originSlug, destinationSlug], { queryParams });
             }
+            
           },
           error: () => {
             this.loading = false;

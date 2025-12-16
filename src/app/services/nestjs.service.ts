@@ -20,4 +20,10 @@ export class NestJSService {
     const url = `${this._apiUrl}/locations`;
     return this._http.get(url);
   }
+
+  public getProhibitedRoutes(): Observable<any> {
+    const url = `${this._apiUrl}/prohibited-routes`;
+    return this._http.get(url);
+  }
+
 }
