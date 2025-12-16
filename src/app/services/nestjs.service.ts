@@ -26,4 +26,8 @@ export class NestJSService {
     return this._http.get(url);
   }
 
+  public getHolidays(): Observable<any> {
+    const url = `${this._apiUrl}/holidays`;
+    return this._http.get(url)
+  }
 }

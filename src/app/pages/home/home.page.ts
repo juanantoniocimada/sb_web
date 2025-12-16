@@ -52,7 +52,7 @@ export class HomePage implements OnInit {
     injects
   */
 
-  nestJs = inject(NestJSService);
+  public nestJs = inject(NestJSService);
 
   private _townService = inject(TownService);
   private _prohibitedRoutesService = inject(ProhibitedRoutesService);

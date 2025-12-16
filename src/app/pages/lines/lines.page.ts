@@ -16,6 +16,7 @@ import { ItemComponent } from '../../components/item/item.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ItemComponentCopy } from '../../components/item-copy/item-copy.component';
 import { HomeToLines } from '../../services/home-to-lines';
+import { NestJSService } from '../../services/nestjs.service';
 
 @Component({
   selector: 'app-lines',
@@ -67,6 +68,7 @@ export class LinesPage implements OnInit {
   /*
     injects
   */
+  public nestJs = inject(NestJSService);
   private _linesService = inject(LinesService);
   public _router = inject(Router);
   private _route = inject(ActivatedRoute);
@@ -225,15 +227,17 @@ export class LinesPage implements OnInit {
 
     this.loading = true;
 
-    this._holidaysService.getHolidays().pipe(take(1)).subscribe({
-      next: (holidays: any[]) => {
+    this.nestJs.getHolidays().pipe(take(1)).subscribe({
+      next: (data: any) => {
+
+        const holidays = data.data;
 
         const selectedDate = new Date(this.dateTimeValue);
         const todayYear = selectedDate.getFullYear();
         const todayMonth = selectedDate.getMonth() + 1; // Months are 0-based
         const todayDate = selectedDate.getDate();
 
-        const matchingHoliday = holidays.find(holiday => {
+        const matchingHoliday = holidays.find((holiday: any) => {
           const holidayDate = new Date(holiday.date);
           return (
             holidayDate.getFullYear() === todayYear &&
