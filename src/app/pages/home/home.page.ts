@@ -92,7 +92,7 @@ export class HomePage implements OnInit {
     this.titleService.setTitle('bus fuerteventura - fuerteguagua');
 
     this.metaService.updateTag({ name: 'description', 
-      content: 'Consulta horarios y precios de transporte público entre diferentes destinos' });
+      content: 'Consulta horarios de transporte público de fuerteventura' });
 
     this.metaService.updateTag({ name: 'keywords', 
       content: 'horarios, precios, transporte público, rutas, autobuses, ferris, conexiones' });
