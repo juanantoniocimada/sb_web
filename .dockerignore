@@ -1,0 +1,5 @@
+# Evita que se copien los módulos de node locales y el directorio de build
+/node_modules
+/dist
+.env
+npm-debug.log
