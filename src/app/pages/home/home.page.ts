@@ -145,10 +145,7 @@ export class HomePage implements OnInit {
     this.nestJs.getLocations().pipe(take(1)).subscribe({
       next: (data: any) => {
 
-
         const towns = data.data;
-
-        console.log(towns);
 
         this.loading = false;
         
