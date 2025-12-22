@@ -1,39 +1,30 @@
-# ============================
 # STAGE 1: Build
-# ============================
+# Esta etapa compila la aplicación Angular SSR
 FROM node:20-alpine AS build
 WORKDIR /app
-
-# Copiamos package.json y package-lock.json
 COPY package*.json ./
-
-# Instalamos todas las dependencias (incluidas dev)
+# Instala todas las dependencias (incluidas las de desarrollo) para la compilación
 RUN npm ci
-
-# Copiamos todo el código fuente
 COPY . .
+# Ejecuta el script de build de tu package.json
+RUN npm run build
 
-# Limpiamos builds previos por si acaso
-RUN rm -rf dist .angular
-
-# Ejecutamos build SSR (cliente + server)
-RUN npm run build:ssr
-
-# ============================
 # STAGE 2: Runtime
-# ============================
+# Esta etapa prepara la imagen final para producción
 FROM node:20-alpine AS runtime
 WORKDIR /app
-
-# Copiamos solo las dependencias de producción
+# Copia solo los archivos necesarios para ejecutar la app
 COPY package*.json ./
+# Instala únicamente las dependencias de producción
 RUN npm ci --omit=dev
 
-# Copiamos los artefactos de la compilación
-COPY --from=build /app/dist/mi-proyecto-ssr ./dist/mi-proyecto-ssr
+# Copia los artefactos de la compilación desde la etapa 'build'
+# El nombre del proyecto es 'mi-proyecto-ssr' según tu package.json
+COPY --from=build /app/dist/mi-proyecto-ssr/ ./dist/mi-proyecto-ssr
 
-# Exponemos el puerto (ajústalo si tu VPS usa otro)
+# El servidor Express en server.ts usa la variable de entorno PORT o 4000 por defecto.
+# Exponemos el puerto 4000. Puedes cambiarlo en tu VPS con -p 80:4000
 EXPOSE 4000
 
-# Comando para iniciar el servidor SSR
-CMD ["node", "dist/mi-proyecto-ssr/server/server.mjs"]
+# El comando para iniciar el servidor SSR (ver script en package.json)
+CMD [ "node", "dist/mi-proyecto-ssr/server/server.mjs" ]
