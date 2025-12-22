@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:mi-proyecto-ssr": "node dist/mi-proyecto-ssr/server/server.mjs"
+    "serve:ssr:mi-proyecto-ssr": "node dist/mi-proyecto-ssr/server/server.mjs",
+    "build:ssr": "ng build && ng run mi-proyecto-ssr:server"
   },
   "prettier": {
     "printWidth": 100,
