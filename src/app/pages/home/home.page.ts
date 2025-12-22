@@ -90,11 +90,9 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
 
     // ≈ 45 caracteres ✔
-
-    this.titleService.setTitle('bus fuerteventura - fuerte guagua');
+    this.titleService.setTitle('guagua fuerteventura - fuerteguagua');
 
     // ≈ 120 caracteres ✔
-
     this.metaService.updateTag({ name: 'description', 
       content: 'Consulta horarios de la guaguas de fuerteventura' });
 

@@ -15,29 +15,33 @@
 
 .line {
   width: 100%;
-  // border: 1px solid gray;
-  // background-color: gainsboro;
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 1em;
+  flex-wrap: wrap; 
+  align-items: center;
 
   label {
     color: var(--brand);
     display: inline-block;
     width: 150px;
-    // background-color: gainsboro;
   }
 }
 
 select, input, button {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: 70px;
+  box-sizing: border-box;
 }
 
 .line-item {
   border-bottom: 2px solid var(--brand-secondary);
-  
+  flex: 1 1 280px; 
+  min-width: 220px;
+  box-sizing: border-box;
+  padding: 0.25em;
 }
 
 select, input {
@@ -80,4 +84,6 @@ button {
   justify-content: center;
   font-size: xx-large;
   color: var(--brand-secondary);
+  flex: 0 0 auto;
+  padding: 0 0.5em;
 }
