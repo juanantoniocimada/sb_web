@@ -89,13 +89,15 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
 
-    this.titleService.setTitle('bus fuerteventura - fuerteguagua');
+    // ≈ 45 caracteres ✔
+
+    this.titleService.setTitle('bus fuerteventura - fuerte guagua');
+
+    // ≈ 120 caracteres ✔
 
     this.metaService.updateTag({ name: 'description', 
-      content: 'Consulta horarios de transporte público de fuerteventura' });
+      content: 'Consulta horarios de la guaguas de fuerteventura' });
 
-    this.metaService.updateTag({ name: 'keywords', 
-      content: 'horarios, precios, transporte público, rutas, autobuses, ferris, conexiones' });
 
     if (!this.dateValue) {
       const now = new Date();
