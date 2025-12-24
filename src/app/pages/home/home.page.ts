@@ -201,9 +201,9 @@ export class HomePage implements OnInit {
         const body = {
           origin: this.origin.description,
           destination: this.destination.description,
-          // datetime_input: this.dateTimeValue,
+          datetime_input: new Date().toISOString(),
           datetime_search: new Date().toISOString(),
-          // username: localStorage.getItem('userId') || 'unknown'
+          username: 'web-user',
         };
 
         this.loading = true;
