@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { NestJSService } from '../../services/nestjs.service';
+import { Button } from '@juanantoniocimada/shared-ui';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,8 @@ import { NestJSService } from '../../services/nestjs.service';
     HeaderComponent,
     FooterComponent,
     TranslateModule,
-    FormsModule
+    FormsModule,
+    Button
   ],
   providers: [
     TownService, 
