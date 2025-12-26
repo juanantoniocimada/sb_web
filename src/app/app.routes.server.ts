@@ -13,7 +13,7 @@ export const serverRoutes: ServerRoute[] = [
 		renderMode: RenderMode.Prerender,
 	},
 	{
-		path: ':lang/:origin/:destination',
+		path: ':origin/:destination',
 		// Mark as prerender mode but return no params so prerenderer skips generating pages
 		renderMode: RenderMode.Prerender,
 		getPrerenderParams: async () => {

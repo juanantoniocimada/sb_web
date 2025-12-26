@@ -29,7 +29,14 @@
   }
 }
 
-select, input, button {
+h1 {
+  color: var(--brand-secondary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bolder;
+  text-align: center;
+}
+
+select, input {
   width: 100%;
   max-width: 300px;
   height: 70px;
@@ -68,6 +75,7 @@ button {
   padding-bottom: 1em;
   color: var(--brand-secondary);
   box-shadow: 4px 4px 4px gainsboro;
+  width: 200px;
 
   &:hover {
     background: var(--brand-secondary);

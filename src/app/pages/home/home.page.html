@@ -10,6 +10,9 @@
 
 @else {
     <div class="container">
+      <h1>
+        Guaguas / bus Fuerteventura
+      </h1>
 
       @if (isRouteProhibited) {
         <div>
@@ -61,7 +64,7 @@
       </div>
 
       <div>
-        <button>
+        <button (click)="find()">
           {{ 'search' | translate }}
         </button>
       </div>
