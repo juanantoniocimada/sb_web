@@ -22,6 +22,7 @@ import { NestJSService } from '../../services/nestjs.service';
     FooterComponent,
     TranslateModule,
     FormsModule,
+    
   ],
   providers: [
     TownService, 

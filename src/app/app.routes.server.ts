@@ -6,18 +6,14 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 export const serverRoutes: ServerRoute[] = [
 	{
 		path: '',
-		renderMode: RenderMode.Prerender,
+		renderMode: RenderMode.Server,
 	},
 	{
 		path: 'links',
-		renderMode: RenderMode.Prerender,
+		renderMode: RenderMode.Server,
 	},
 	{
-		path: ':lang/:origin/:destination',
-		// Mark as prerender mode but return no params so prerenderer skips generating pages
-		renderMode: RenderMode.Prerender,
-		getPrerenderParams: async () => {
-			return [];
-		},
+		path: 'bus/:origin/:destination',
+		renderMode: RenderMode.Server,
 	},
 ];
