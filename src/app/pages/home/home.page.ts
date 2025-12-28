@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { NestJSService } from '../../services/nestjs.service';
+import { Button } from '@juanantoniocimada/shared-ui';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ import { NestJSService } from '../../services/nestjs.service';
     FooterComponent,
     TranslateModule,
     FormsModule,
+    Button
   ],
   providers: [
     TownService, 
@@ -72,7 +74,7 @@ export class HomePage implements OnInit {
 
   constructor(public translate: TranslateService) {
 
-    translate.use('es');
+    // translate.use('en');
 
     this.translate
       .get(['origin', 'destination', 'island'])
@@ -228,7 +230,7 @@ export class HomePage implements OnInit {
             if (this.timeValue) queryParams.time = this.timeValue;
 
             if (!this.isRouteProhibited) {
-              this._router.navigate(['/bus', originSlug, destinationSlug], { queryParams });
+              this._router.navigate(['/', 'es', originSlug, destinationSlug], { queryParams });
             }
             
           },

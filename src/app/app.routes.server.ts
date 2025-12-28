@@ -8,14 +8,12 @@ export const serverRoutes: ServerRoute[] = [
 		path: '',
 		renderMode: RenderMode.Prerender,
 	},
-	/*
 	{
 		path: 'links',
-		renderMode: RenderMode.Server,
+		renderMode: RenderMode.Prerender,
 	},
-	*/
 	{
-		path: 'bus/:origin/:destination',
+		path: ':lang/:origin/:destination',
 		// Mark as prerender mode but return no params so prerenderer skips generating pages
 		renderMode: RenderMode.Prerender,
 		getPrerenderParams: async () => {

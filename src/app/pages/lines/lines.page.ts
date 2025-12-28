@@ -95,9 +95,9 @@ export class LinesPage implements OnInit {
 
   
   constructor(public translate: TranslateService) {
-    // let lang = this._route.snapshot.paramMap.get('lang'); 
+    let lang = this._route.snapshot.paramMap.get('lang'); 
   
-    this.translate.use('es');
+    this.translate.use(lang || 'en');
   }
 
   ngOnInit(): void {
