@@ -72,7 +72,7 @@ export class HomePage implements OnInit {
 
   constructor(public translate: TranslateService) {
 
-    // translate.use('en');
+    translate.use('es');
 
     this.translate
       .get(['origin', 'destination', 'island'])

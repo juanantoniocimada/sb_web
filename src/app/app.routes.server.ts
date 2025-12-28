@@ -10,7 +10,7 @@ export const serverRoutes: ServerRoute[] = [
 	},
 	{
 		path: 'links',
-		renderMode: RenderMode.Prerender,
+		renderMode: RenderMode.Server,
 	},
 	{
 		path: 'bus/:origin/:destination',
