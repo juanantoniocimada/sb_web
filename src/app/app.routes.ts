@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+
   {
     path: '',
     loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
@@ -10,8 +11,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/links/links.page').then((m) => m.LinksPage),
   },
   {
-    path: ':origin/:destination',
+		path: 'bus/:origin/:destination',
     loadComponent: () => import('./pages/lines/lines.page').then((m) => m.LinesPage),
   },
-  
 ];

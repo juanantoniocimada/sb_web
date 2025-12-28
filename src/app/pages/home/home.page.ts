@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
 
   constructor(public translate: TranslateService) {
 
-    this.translate.use('es');
+    // translate.use('en');
 
     this.translate
       .get(['origin', 'destination', 'island'])
@@ -230,7 +230,7 @@ export class HomePage implements OnInit {
             if (this.timeValue) queryParams.time = this.timeValue;
 
             if (!this.isRouteProhibited) {
-              this._router.navigate(['/', originSlug, destinationSlug], { queryParams });
+              this._router.navigate(['/bus', originSlug, destinationSlug], { queryParams });
             }
             
           },
