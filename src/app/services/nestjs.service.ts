@@ -21,6 +21,11 @@ export class NestJSService {
     return this._http.get(url);
   }
 
+  public getLocationBySlug(slug: string): Observable<any> {
+    const url = `${this._apiUrl}/locations/${slug}`;
+    return this._http.get(url);
+  }
+
   public getProhibitedRoutes(): Observable<any> {
     const url = `${this._apiUrl}/prohibited-routes`;
     return this._http.get(url);
@@ -34,5 +39,25 @@ export class NestJSService {
   public addStatistics(data: any): Observable<any> {
     const url = `${this._apiUrl}/statistics`;
     return this._http.post(url, data);
+  }
+
+  public addMessage(data: any): Observable<any> {
+    const url = `${this._apiUrl}/messages`;
+    return this._http.post(url, data);
+  }
+
+  public getHoursByRoutes(payload: any): Observable<any> {
+    const url = `${this._apiUrl}/hours-route/by-routes`;
+    return this._http.post(url, payload);
+  }
+
+  public getLocationsByHour(payload: any): Observable<any> {
+    const url = `${this._apiUrl}/itinerary-specific-hour/by-hours`;
+    return this._http.post(url, payload);
+  }
+
+  public getLines(origin: number, destination: number): Observable<any> {
+    const url = `${this._apiUrl}/locations-routes/origin/${destination}/destination/${origin}`;
+    return this._http.get(url);
   }
 }

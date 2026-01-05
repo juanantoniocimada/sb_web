@@ -68,7 +68,7 @@ export class LinesPage implements OnInit {
   /*
     injects
   */
-  public nestJs = inject(NestJSService);
+  public _nestJsService = inject(NestJSService);
   private _linesService = inject(LinesService);
   public _router = inject(Router);
   private _route = inject(ActivatedRoute);
@@ -129,6 +129,7 @@ export class LinesPage implements OnInit {
       festive: festive,
     };    
 
+    /*
     this._linesService.getHours(item).pipe(take(1)).subscribe({
       next: (data: any) => {        
 
@@ -143,14 +144,31 @@ export class LinesPage implements OnInit {
         this.error = true;
       }
     });
+    */
+
+    this._nestJsService.getHoursByRoutes(item).pipe(take(1)).subscribe({
+      next: (data: any) => {        
+
+        this.hours = data.data;
+        this.hoursOriginal = data.data;
+
+        this.loading = false;
+
+      },
+      error: (error: any) => {
+        this.loading = false;
+        this.error = true;
+      }
+    });   
+
   }
 
   public getLines(origin: string, destination: string) {
 
     this.lines = [];
 
-    this.loading = true;
 
+    /*
     this._linesService.getLines(origin, destination).pipe(take(1)).subscribe({
       next: (data: any) => {
 
@@ -184,6 +202,47 @@ export class LinesPage implements OnInit {
 
       }
     });
+    */
+
+    this.loading = true;
+
+    const originNum = Number(origin);
+    const destinationNum = Number(destination);
+
+    this._nestJsService.getLines(originNum, destinationNum).pipe(take(1)).subscribe({
+      next: (data: any) => {
+
+      this.loading = false;     
+      
+      if (data.data.mode === 'combinedRoutes') {
+        this.mode = 'combinedRoutes';
+        this.combinadas = data.data['combined'];  
+        
+        console.log(this.combinadas);
+        
+
+        this.selectCombined(
+          this.combinadas[0].items[0],
+          0
+        );
+      } else {
+        
+        this.mode = 'directRoute';
+        this.lines = data.data['data'][0];
+        
+
+        this.getHours(this.isHoliday);
+      }
+
+      },
+      error: (error: any) => {
+        this.loading = false;
+        this.error = true;
+
+        this._router.navigate(['/home']);
+      }
+    });
+
   }
 
   public selectCombined(item: any, index: any) {
@@ -227,7 +286,7 @@ export class LinesPage implements OnInit {
 
     this.loading = true;
 
-    this.nestJs.getHolidays().pipe(take(1)).subscribe({
+    this._nestJsService.getHolidays().pipe(take(1)).subscribe({
       next: (data: any) => {
 
         const holidays = data.data;
@@ -252,13 +311,20 @@ export class LinesPage implements OnInit {
           this.holidayData = matchingHoliday;
         }
 
+
+
         forkJoin({
-          originTown: this._townService.getTownBySlug(this.originSlugParam || ''),
-          destinationTown: this._townService.getTownBySlug(this.destinationSlugParam || '')
+          originTown: this._nestJsService.getLocationBySlug(this.originSlugParam || ''),
+          destinationTown: this._nestJsService.getLocationBySlug(this.destinationSlugParam || '')
         }).pipe(take(1)).subscribe({
-          next: ({ originTown, destinationTown }) => {
-            this.origin = originTown;
-            this.destination = destinationTown;
+          next: (data: any) => {            
+
+            this.origin = data.originTown;
+            this.destination = data.destinationTown;
+            
+            this.origin = this.origin.data;
+            this.destination = this.destination.data;
+            
 
             this._homeToLines.setData(
               this.origin,
@@ -286,20 +352,6 @@ export class LinesPage implements OnInit {
       error: (error) => {
         this.loading = false;
         this.error = true;
-      }
-    });
-  }
-
-  getTownBySlug(slug: string): any {
-  
-    this._townService.getTownBySlug(slug).pipe(take(1)).subscribe({
-      next: (data: any) => {
-        return data;
-      },
-      error: (error: any) => {
-        this.loading = false;
-        this.error = true;
-        return null;
       }
     });
   }
