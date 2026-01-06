@@ -65,16 +65,14 @@ export class LinesPage implements OnInit {
   public mode = '';
   public error = false;
 
-  /*
-    injects
-  */
+
   public _nestJsService = inject(NestJSService);
-  private _linesService = inject(LinesService);
+  // private _linesService = inject(LinesService);
   public _router = inject(Router);
   private _route = inject(ActivatedRoute);
   private _homeToLines = inject(HomeToLines);
-  private _holidaysService = inject(HolidaysService);
-  private _townService = inject(TownService);
+  // private _holidaysService = inject(HolidaysService);
+  // private _townService = inject(TownService);
   private titleService = inject(Title);
   private metaService = inject(Meta);
 
@@ -311,8 +309,6 @@ export class LinesPage implements OnInit {
           this.holidayData = matchingHoliday;
         }
 
-
-
         forkJoin({
           originTown: this._nestJsService.getLocationBySlug(this.originSlugParam || ''),
           destinationTown: this._nestJsService.getLocationBySlug(this.destinationSlugParam || '')
@@ -332,9 +328,16 @@ export class LinesPage implements OnInit {
               this.dateTimeValue
             );
 
-            this.titleService.setTitle('ruta de ' + this.origin.description + ' a ' + this.destination.description + ' - fuerteguagua');
+            const titleContent = 'BUS ' + this.origin.description + ' a ' + this.destination.description + ' - fuerteguagua';
+            const descriptionContent = 'bus ' + this.origin.description + ' a ' + this.destination.description;
+
+            console.log(titleContent);
+            console.log(descriptionContent);
+
+            this.titleService.setTitle(titleContent);
+
             this.metaService.updateTag({ name: 'description', 
-              content: 'bus ' + this.origin.description + ' a ' + this.destination.description });
+              content: descriptionContent });
 
               
             this.getLines(this.origin.id_locations, this.destination.id_locations);

@@ -7,6 +7,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-links',
@@ -27,17 +28,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class LinksPage implements OnInit {
 
-  /*
-    injects
-  */
   private _townService = inject(TownService);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
 
   public browserLang: string | undefined = '';
   public combinations: any[] = [];
 
-  /*
-    indicators
-  */
+
   public loading: boolean = false;
   public error = false;
 
@@ -50,6 +48,14 @@ export class LinksPage implements OnInit {
   public loadData(): void {
 
     this.loading = true;
+
+    const titleContent = 'Rutas de Bus - fuerteguagua';
+    const descriptionContent = 'combinaciones de rutas de bus disponibles con fuerteguagua.';
+
+    this.titleService.setTitle(titleContent);
+
+    this.metaService.updateTag({ name: 'description', 
+      content: descriptionContent });
 
     this._townService.getCombinations().pipe(take(1)).subscribe({
       next: (combinations: any[]) => {

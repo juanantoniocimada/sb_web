@@ -30,7 +30,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/links/links.page').then((m) => m.LinksPage),
   },
   {
-    path: ':lang/:origin/:destination',
+    path: ':origin/:destination',
     loadComponent: () => import('./pages/lines/lines.page').then((m) => m.LinesPage),
   },
   

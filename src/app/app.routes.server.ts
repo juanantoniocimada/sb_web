@@ -13,7 +13,7 @@ export const serverRoutes: ServerRoute[] = [
 		renderMode: RenderMode.Server,
 	},
 	{
-		path: ':lang/:origin/:destination',
+		path: ':origin/:destination',
 		renderMode: RenderMode.Server,
 	},
 ];

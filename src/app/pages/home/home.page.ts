@@ -55,9 +55,9 @@ export class HomePage implements OnInit {
 
   public nestJs = inject(NestJSService);
 
-  private _townService = inject(TownService);
-  private _prohibitedRoutesService = inject(ProhibitedRoutesService);
-  private _statisticsService = inject(StatisticsService);
+  // private _townService = inject(TownService);
+  // private _prohibitedRoutesService = inject(ProhibitedRoutesService);
+  // private _statisticsService = inject(StatisticsService);
   private _router = inject(Router);
   private titleService = inject(Title);
   private metaService = inject(Meta);
@@ -229,7 +229,7 @@ export class HomePage implements OnInit {
             if (this.timeValue) queryParams.time = this.timeValue;
 
             if (!this.isRouteProhibited) {
-              this._router.navigate(['/', 'es', originSlug, destinationSlug], { queryParams });
+              this._router.navigate(['/', originSlug, destinationSlug], { queryParams });
             }
             
           },
