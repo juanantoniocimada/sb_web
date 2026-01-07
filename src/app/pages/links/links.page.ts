@@ -8,6 +8,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
+import { NestJSService } from '../../services/nestjs.service';
 
 @Component({
   selector: 'app-links',
@@ -28,6 +29,7 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class LinksPage implements OnInit {
 
+  public nestJs = inject(NestJSService);
   private _townService = inject(TownService);
   private titleService = inject(Title);
   private metaService = inject(Meta);
@@ -62,13 +64,27 @@ export class LinksPage implements OnInit {
         
         this.combinations = combinations; 
                 
-        // this.loadConfig(towns);
       },
       error: (error) => {
         this.loading = false;
         this.error = true;
       },
     });
+
+    this.nestJs.generateCombinations().pipe(take(1)).subscribe({
+      next: (data: any) => {
+        this.loading = false;
+
+        console.log(data);
+
+        this.combinations = data.data;
+      },
+      error: (error) => {
+        this.loading = false;
+        this.error = true;
+      },
+    });
+
   }
 
 

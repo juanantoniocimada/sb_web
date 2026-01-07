@@ -21,6 +21,11 @@ export class NestJSService {
     return this._http.get(url);
   }
 
+  public generateCombinations(): Observable<any> {
+    const url = `${this._apiUrl}/locations/generate-combinations`;
+    return this._http.get(url);
+  }
+
   public getLocationBySlug(slug: string): Observable<any> {
     const url = `${this._apiUrl}/locations/${slug}`;
     return this._http.get(url);
