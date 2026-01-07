@@ -58,24 +58,8 @@ export class LinksPage implements OnInit {
     this.metaService.updateTag({ name: 'description', 
       content: descriptionContent });
 
-      /*
-      this._townService.getCombinations().pipe(take(1)).subscribe({
-      next: (combinations: any[]) => {
-      this.loading = false;
-
-      this.combinations = combinations; 
-              
-      },
-      error: (error) => {
-      this.loading = false;
-      this.error = true;
-      },
-      });
-      */
 
       this.load();
-
-
 
   }
 
