@@ -48,7 +48,7 @@ export class LinksPage implements OnInit {
 
   public loadData(): void {
 
-    this.loading = true;
+    // this.loading = true;
 
     const titleContent = 'Rutas de Bus - fuerteguagua';
     const descriptionContent = 'combinaciones de rutas de bus disponibles con fuerteguagua.';
@@ -58,34 +58,37 @@ export class LinksPage implements OnInit {
     this.metaService.updateTag({ name: 'description', 
       content: descriptionContent });
 
-    this._townService.getCombinations().pipe(take(1)).subscribe({
+      /*
+      this._townService.getCombinations().pipe(take(1)).subscribe({
       next: (combinations: any[]) => {
-        this.loading = false;
-        
-        this.combinations = combinations; 
-                
+      this.loading = false;
+
+      this.combinations = combinations; 
+              
       },
       error: (error) => {
-        this.loading = false;
-        this.error = true;
+      this.loading = false;
+      this.error = true;
       },
-    });
+      });
+      */
 
-    this.nestJs.generateCombinations().pipe(take(1)).subscribe({
-      next: (data: any) => {
-        this.loading = false;
 
-        console.log(data);
-
-        this.combinations = data.data;
-      },
-      error: (error) => {
-        this.loading = false;
-        this.error = true;
-      },
-    });
 
   }
 
+  load(): void {
+    this.nestJs.generateCombinations().pipe(take(1)).subscribe({
+      next: (response: any) => {
+        console.log('Combinations generated:', response);
+        
+        this.combinations = response.data;
+      },
+      error: (error) => {
+        console.error('Error generating combinations:', error);
+      }
+    });
+
+  }
 
 }
