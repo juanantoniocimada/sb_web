@@ -35,7 +35,6 @@ export class LinksPage implements OnInit {
   public browserLang: string | undefined = '';
   public combinations: any[] = [];
 
-
   public loading: boolean = false;
   public error = false;
 

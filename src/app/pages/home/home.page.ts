@@ -229,7 +229,7 @@ export class HomePage implements OnInit {
             if (this.timeValue) queryParams.time = this.timeValue;
 
             if (!this.isRouteProhibited) {
-              this._router.navigate(['/', originSlug, destinationSlug], { queryParams });
+              this._router.navigate(['/bus/', originSlug, destinationSlug], { queryParams });
             }
             
           },
