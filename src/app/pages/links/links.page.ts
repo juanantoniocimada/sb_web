@@ -73,6 +73,8 @@ export class LinksPage implements OnInit {
       });
       */
 
+      this.load();
+
 
 
   }
